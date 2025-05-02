@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>แผนที่สภาพอากาศจาก TMD</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    // สร้างแผนที่
+    const map = L.map('map').setView([13.75, 100.5], 6); // ศูนย์กลางที่ประเทศไทย
+
+    // เพิ่มแผนที่พื้นหลังจาก OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // ดึงข้อมูลจาก API ของ TMD
+    const apiUrl = 'https://data.tmd.go.th/api/WeatherToday/V2/?uid=api&ukey=api12345';
+
+    d3.json(apiUrl).then(data => {
+      data.Stations.forEach(station => {
+        const lat = parseFloat(station.Latitude);
+        const lon = parseFloat(station.Longitude);
+        const name = station.StationNameTh;
+        const temp = station.Observe.Temp;
+        const humidity = station.Observe.RH;
+        const rain = station.Observe.Rainfall;
+
+        // สร้าง marker บนแผนที่
+        L.circleMarker([lat, lon], {
+          radius: 8,
+          fillColor: 'blue',
+          color: '#fff',
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.7
+        }).addTo(map)
+          .bindPopup(`<strong>${name}</strong><br>อุณหภูมิ: ${temp}°C<br>ความชื้น: ${humidity}%<br>ฝน: ${rain} มม.`);
+      });
+    }).catch(error => {
+      console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
+    });
+  </script>
+</body>
+</html>
