@@ -1,49 +1,3042 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>MangbinMap</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    #map { height: 100vh; }
-  </style>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8a0ab18aa5b1eae292463f9e37c0b087 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
 </head>
 <body>
-  <div id="map"></div>
-
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script>
-    const map = L.map('map').setView([13.75, 100.5], 6);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    const apiUrl = 'https://rainny-sv.onrender.com/weather-today';
-
-    d3.json(apiUrl).then(data => {
-      data.Stations.forEach(station => {
-        const lat = parseFloat(station.Latitude);
-        const lon = parseFloat(station.Longitude);
-        const name = station.StationNameTh;
-        const temp = station.Observe.Temp;
-        const humidity = station.Observe.RH;
-        const rain = station.Observe.Rainfall;
-
-        L.circleMarker([lat, lon], {
-          radius: 8,
-          fillColor: 'blue',
-          color: '#fff',
-          weight: 1,
-          opacity: 1,
-          fillOpacity: 0.7
-        }).addTo(map)
-          .bindPopup(`<strong>${name}</strong><br>อุณหภูมิ: ${temp}°C<br>ความชื้น: ${humidity}%<br>ฝน: ${rain} มม.`);
-      });
-    }).catch(error => {
-      console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
-    });
-  </script>
+    
+    
+            <div class="folium-map" id="map_8a0ab18aa5b1eae292463f9e37c0b087" ></div>
+        
 </body>
+<script>
+    
+    
+            var map_8a0ab18aa5b1eae292463f9e37c0b087 = L.map(
+                "map_8a0ab18aa5b1eae292463f9e37c0b087",
+                {
+                    center: [13.7563, 100.5018],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7fbf4a784d5586e3cb1c1651928b83a1 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_7fbf4a784d5586e3cb1c1651928b83a1.addTo(map_8a0ab18aa5b1eae292463f9e37c0b087);
+        
+    
+            var marker_cluster_055f3d012ca000dde50a415189ec3df1 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_6990b6c06badad4158f2a112790c1304 = L.circleMarker(
+                [19.29897, 97.97578],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_c88d02918fe48ddff0e27e54fcc83653 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1521470e83995d21ac9264cc8865cba4 = $(`<div id="html_1521470e83995d21ac9264cc8865cba4" style="width: 100.0%; height: 100.0%;">แม่ฮ่องสอน - 0.5 มม.</div>`)[0];
+                popup_c88d02918fe48ddff0e27e54fcc83653.setContent(html_1521470e83995d21ac9264cc8865cba4);
+            
+        
+
+        circle_marker_6990b6c06badad4158f2a112790c1304.bindPopup(popup_c88d02918fe48ddff0e27e54fcc83653)
+        ;
+
+        
+    
+    
+            var circle_marker_ca364510e2a2e41f6b4fe5ce9fbb1d4b = L.circleMarker(
+                [18.16667, 97.93333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_246700b798b8663e0bdca0caabe24dae = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_18e464fec258129de00ac36e0a5b505b = $(`<div id="html_18e464fec258129de00ac36e0a5b505b" style="width: 100.0%; height: 100.0%;">แม่สะเรียง - 0.0 มม.</div>`)[0];
+                popup_246700b798b8663e0bdca0caabe24dae.setContent(html_18e464fec258129de00ac36e0a5b505b);
+            
+        
+
+        circle_marker_ca364510e2a2e41f6b4fe5ce9fbb1d4b.bindPopup(popup_246700b798b8663e0bdca0caabe24dae)
+        ;
+
+        
+    
+    
+            var circle_marker_446c73f24f4704cb75a713041c8e3922 = L.circleMarker(
+                [19.96139, 99.88139],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_4228ada717840a048dd6bff79ce3f69a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e442d6cff62aa346dbbaf7cb6dc3c6db = $(`<div id="html_e442d6cff62aa346dbbaf7cb6dc3c6db" style="width: 100.0%; height: 100.0%;">เชียงราย - 0.0 มม.</div>`)[0];
+                popup_4228ada717840a048dd6bff79ce3f69a.setContent(html_e442d6cff62aa346dbbaf7cb6dc3c6db);
+            
+        
+
+        circle_marker_446c73f24f4704cb75a713041c8e3922.bindPopup(popup_4228ada717840a048dd6bff79ce3f69a)
+        ;
+
+        
+    
+    
+            var circle_marker_8fec5a96ad85ee906355c6837c34256e = L.circleMarker(
+                [19.87083, 99.78278],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_78958b9d6b09ad42b4c8a47c7618940f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_191e75d304292b18d2f06a9ddf9c607b = $(`<div id="html_191e75d304292b18d2f06a9ddf9c607b" style="width: 100.0%; height: 100.0%;">เชียงราย สกษ. - 1.2 มม.</div>`)[0];
+                popup_78958b9d6b09ad42b4c8a47c7618940f.setContent(html_191e75d304292b18d2f06a9ddf9c607b);
+            
+        
+
+        circle_marker_8fec5a96ad85ee906355c6837c34256e.bindPopup(popup_78958b9d6b09ad42b4c8a47c7618940f)
+        ;
+
+        
+    
+    
+            var circle_marker_6af2173d59bf4b31fd4b92adde17f6d3 = L.circleMarker(
+                [19.13333, 99.9],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_779f555a9b2e3092aa965abd68d59393 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7559ea34c0f8cb16530e65b67c71a513 = $(`<div id="html_7559ea34c0f8cb16530e65b67c71a513" style="width: 100.0%; height: 100.0%;">พะเยา - 0.0 มม.</div>`)[0];
+                popup_779f555a9b2e3092aa965abd68d59393.setContent(html_7559ea34c0f8cb16530e65b67c71a513);
+            
+        
+
+        circle_marker_6af2173d59bf4b31fd4b92adde17f6d3.bindPopup(popup_779f555a9b2e3092aa965abd68d59393)
+        ;
+
+        
+    
+    
+            var circle_marker_6f429490cf29274fb0a90f390ab33a2d = L.circleMarker(
+                [19.93139, 99.04833],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_443121ed91ff9024ee26448d755f38a3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a546a40d8d1626137e86950bea9349fc = $(`<div id="html_a546a40d8d1626137e86950bea9349fc" style="width: 100.0%; height: 100.0%;">ดอยอ่างขาง - 0.0 มม.</div>`)[0];
+                popup_443121ed91ff9024ee26448d755f38a3.setContent(html_a546a40d8d1626137e86950bea9349fc);
+            
+        
+
+        circle_marker_6f429490cf29274fb0a90f390ab33a2d.bindPopup(popup_443121ed91ff9024ee26448d755f38a3)
+        ;
+
+        
+    
+    
+            var circle_marker_1c90cc7db0ea4b001b6652a4bccef4a4 = L.circleMarker(
+                [18.79, 98.97694],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_bc28dd439385bf3bea20dfa969562a7f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6eb78f927d8dd0c2a0a15e9f424aed85 = $(`<div id="html_6eb78f927d8dd0c2a0a15e9f424aed85" style="width: 100.0%; height: 100.0%;">เชียงใหม่ - 0.0 มม.</div>`)[0];
+                popup_bc28dd439385bf3bea20dfa969562a7f.setContent(html_6eb78f927d8dd0c2a0a15e9f424aed85);
+            
+        
+
+        circle_marker_1c90cc7db0ea4b001b6652a4bccef4a4.bindPopup(popup_bc28dd439385bf3bea20dfa969562a7f)
+        ;
+
+        
+    
+    
+            var circle_marker_21fb0e57788db4520a5f5414df1ac64a = L.circleMarker(
+                [18.28333, 99.51667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_c3b724deda7b9b4b86edc8a74459bac4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a08b0b70e61dc6a245eef1c8ff19460e = $(`<div id="html_a08b0b70e61dc6a245eef1c8ff19460e" style="width: 100.0%; height: 100.0%;">ลำปาง - 0.0 มม.</div>`)[0];
+                popup_c3b724deda7b9b4b86edc8a74459bac4.setContent(html_a08b0b70e61dc6a245eef1c8ff19460e);
+            
+        
+
+        circle_marker_21fb0e57788db4520a5f5414df1ac64a.bindPopup(popup_c3b724deda7b9b4b86edc8a74459bac4)
+        ;
+
+        
+    
+    
+            var circle_marker_423103cfc0e5577bb30f1633eccc118c = L.circleMarker(
+                [17.63661, 99.24475],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f7a4938117f19b1979f6899ef9206cbe = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fe58406e20c9cfb7fd62859e2f2dfa62 = $(`<div id="html_fe58406e20c9cfb7fd62859e2f2dfa62" style="width: 100.0%; height: 100.0%;">เถิน - 0.0 มม.</div>`)[0];
+                popup_f7a4938117f19b1979f6899ef9206cbe.setContent(html_fe58406e20c9cfb7fd62859e2f2dfa62);
+            
+        
+
+        circle_marker_423103cfc0e5577bb30f1633eccc118c.bindPopup(popup_f7a4938117f19b1979f6899ef9206cbe)
+        ;
+
+        
+    
+    
+            var circle_marker_0afe8ef284d049f09b1dc8debaeca9bd = L.circleMarker(
+                [18.31667, 99.28333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_91a50e2428218ec0f8b8e94d5e10a679 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2681a7a65c92093d1b96fcc5f4c3045 = $(`<div id="html_f2681a7a65c92093d1b96fcc5f4c3045" style="width: 100.0%; height: 100.0%;">ลำปาง สกษ. - 0.0 มม.</div>`)[0];
+                popup_91a50e2428218ec0f8b8e94d5e10a679.setContent(html_f2681a7a65c92093d1b96fcc5f4c3045);
+            
+        
+
+        circle_marker_0afe8ef284d049f09b1dc8debaeca9bd.bindPopup(popup_91a50e2428218ec0f8b8e94d5e10a679)
+        ;
+
+        
+    
+    
+            var circle_marker_0ebe5f78f0f695f2c5f1a9478ccf50f4 = L.circleMarker(
+                [18.56722, 99.03389],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_854c6cda18c7272062557c119134b441 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ca20d08bb42336a3031ba005200785dd = $(`<div id="html_ca20d08bb42336a3031ba005200785dd" style="width: 100.0%; height: 100.0%;">ลำพูน - 0.0 มม.</div>`)[0];
+                popup_854c6cda18c7272062557c119134b441.setContent(html_ca20d08bb42336a3031ba005200785dd);
+            
+        
+
+        circle_marker_0ebe5f78f0f695f2c5f1a9478ccf50f4.bindPopup(popup_854c6cda18c7272062557c119134b441)
+        ;
+
+        
+    
+    
+            var circle_marker_273162f172c4ec1dcec9063c7e3f9b35 = L.circleMarker(
+                [18.16667, 100.16667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_1d7885f476a74313bc2f7bd7e884507a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9051e0ce681e67172d51b0be3fb776ce = $(`<div id="html_9051e0ce681e67172d51b0be3fb776ce" style="width: 100.0%; height: 100.0%;">แพร่ - 0.0 มม.</div>`)[0];
+                popup_1d7885f476a74313bc2f7bd7e884507a.setContent(html_9051e0ce681e67172d51b0be3fb776ce);
+            
+        
+
+        circle_marker_273162f172c4ec1dcec9063c7e3f9b35.bindPopup(popup_1d7885f476a74313bc2f7bd7e884507a)
+        ;
+
+        
+    
+    
+            var circle_marker_d8fa5c23b6a2d463db2d1f7e492ba221 = L.circleMarker(
+                [18.77972, 100.77778],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f8bbadf2cf9aef66f67147598c9a4b09 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_73dfb02824fdf2f80bd410f5c621bab3 = $(`<div id="html_73dfb02824fdf2f80bd410f5c621bab3" style="width: 100.0%; height: 100.0%;">น่าน - 0.0 มม.</div>`)[0];
+                popup_f8bbadf2cf9aef66f67147598c9a4b09.setContent(html_73dfb02824fdf2f80bd410f5c621bab3);
+            
+        
+
+        circle_marker_d8fa5c23b6a2d463db2d1f7e492ba221.bindPopup(popup_f8bbadf2cf9aef66f67147598c9a4b09)
+        ;
+
+        
+    
+    
+            var circle_marker_8a5e07a7efe14f29892eea613f7050fd = L.circleMarker(
+                [18.86667, 100.75],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_ff5a81bf0818e02ab1b40fb19fa6d74e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1e604a7c6212bee83e54be0a48e01d08 = $(`<div id="html_1e604a7c6212bee83e54be0a48e01d08" style="width: 100.0%; height: 100.0%;">น่าน สกษ. - 0.0 มม.</div>`)[0];
+                popup_ff5a81bf0818e02ab1b40fb19fa6d74e.setContent(html_1e604a7c6212bee83e54be0a48e01d08);
+            
+        
+
+        circle_marker_8a5e07a7efe14f29892eea613f7050fd.bindPopup(popup_ff5a81bf0818e02ab1b40fb19fa6d74e)
+        ;
+
+        
+    
+    
+            var circle_marker_380732b6c67625fafe65eeebb4cc44cf = L.circleMarker(
+                [19.11056, 100.8025],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_b21f692a5446b96edc5cf39a84bf0c7d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f856c719673e7a8cf1acc758025e9b7b = $(`<div id="html_f856c719673e7a8cf1acc758025e9b7b" style="width: 100.0%; height: 100.0%;">ท่าวังผา - 0.2 มม.</div>`)[0];
+                popup_b21f692a5446b96edc5cf39a84bf0c7d.setContent(html_f856c719673e7a8cf1acc758025e9b7b);
+            
+        
+
+        circle_marker_380732b6c67625fafe65eeebb4cc44cf.bindPopup(popup_b21f692a5446b96edc5cf39a84bf0c7d)
+        ;
+
+        
+    
+    
+            var circle_marker_d5fa241f47a41379b5b8d434ecd9a54e = L.circleMarker(
+                [19.41194, 100.88353],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_fdc00e0c0d5bf9446384a9840344178c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f97961fc1df9779279f0ca98ff07d8dd = $(`<div id="html_f97961fc1df9779279f0ca98ff07d8dd" style="width: 100.0%; height: 100.0%;">ทุ่งช้าง - 0.0 มม.</div>`)[0];
+                popup_fdc00e0c0d5bf9446384a9840344178c.setContent(html_f97961fc1df9779279f0ca98ff07d8dd);
+            
+        
+
+        circle_marker_d5fa241f47a41379b5b8d434ecd9a54e.bindPopup(popup_fdc00e0c0d5bf9446384a9840344178c)
+        ;
+
+        
+    
+    
+            var circle_marker_af74c161ac1674d1408b6419c17a4788 = L.circleMarker(
+                [17.61667, 100.1],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_ac9a8e859f3a8fe530cfa9c8c76d64d0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_eb85a2be0391f9d41de68f3bb682d1a8 = $(`<div id="html_eb85a2be0391f9d41de68f3bb682d1a8" style="width: 100.0%; height: 100.0%;">อุตรดิตถ์ - 0.0 มม.</div>`)[0];
+                popup_ac9a8e859f3a8fe530cfa9c8c76d64d0.setContent(html_eb85a2be0391f9d41de68f3bb682d1a8);
+            
+        
+
+        circle_marker_af74c161ac1674d1408b6419c17a4788.bindPopup(popup_ac9a8e859f3a8fe530cfa9c8c76d64d0)
+        ;
+
+        
+    
+    
+            var circle_marker_97c01fbfe1c93badcd4a9401cdb76c99 = L.circleMarker(
+                [17.86717, 102.73303],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_7affb0b718d6207279625be6ce6bd387 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e5e81c53ef93bbec64874ba50330c98b = $(`<div id="html_e5e81c53ef93bbec64874ba50330c98b" style="width: 100.0%; height: 100.0%;">หนองคาย - 0.0 มม.</div>`)[0];
+                popup_7affb0b718d6207279625be6ce6bd387.setContent(html_e5e81c53ef93bbec64874ba50330c98b);
+            
+        
+
+        circle_marker_97c01fbfe1c93badcd4a9401cdb76c99.bindPopup(popup_7affb0b718d6207279625be6ce6bd387)
+        ;
+
+        
+    
+    
+            var circle_marker_cf64dd259309feebc098511ebd50a3ac = L.circleMarker(
+                [17.45, 101.73333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_7b62c79d4721f05ebf6d79206e482c77 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bdddbf663d058b6071c334267018fd0f = $(`<div id="html_bdddbf663d058b6071c334267018fd0f" style="width: 100.0%; height: 100.0%;">เลย - 0.01 มม.</div>`)[0];
+                popup_7b62c79d4721f05ebf6d79206e482c77.setContent(html_bdddbf663d058b6071c334267018fd0f);
+            
+        
+
+        circle_marker_cf64dd259309feebc098511ebd50a3ac.bindPopup(popup_7b62c79d4721f05ebf6d79206e482c77)
+        ;
+
+        
+    
+    
+            var circle_marker_4ec6b49c8c57e914b379baa58c1970a9 = L.circleMarker(
+                [17.4, 101.73333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_cc304375a099e8643a249e902b19a57f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_958811febdb8440bca49f1abf6e5a8ba = $(`<div id="html_958811febdb8440bca49f1abf6e5a8ba" style="width: 100.0%; height: 100.0%;">เลย สกษ. - 0.0 มม.</div>`)[0];
+                popup_cc304375a099e8643a249e902b19a57f.setContent(html_958811febdb8440bca49f1abf6e5a8ba);
+            
+        
+
+        circle_marker_4ec6b49c8c57e914b379baa58c1970a9.bindPopup(popup_cc304375a099e8643a249e902b19a57f)
+        ;
+
+        
+    
+    
+            var circle_marker_86dd7e697f6af2e899018e8baa9114f3 = L.circleMarker(
+                [17.38333, 102.8],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_d4f04e5fb8eb540966f9d909693b3920 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4fa352f17e31b50c1bf8efcb249873ee = $(`<div id="html_4fa352f17e31b50c1bf8efcb249873ee" style="width: 100.0%; height: 100.0%;">อุดรธานี - 2.0 มม.</div>`)[0];
+                popup_d4f04e5fb8eb540966f9d909693b3920.setContent(html_4fa352f17e31b50c1bf8efcb249873ee);
+            
+        
+
+        circle_marker_86dd7e697f6af2e899018e8baa9114f3.bindPopup(popup_d4f04e5fb8eb540966f9d909693b3920)
+        ;
+
+        
+    
+    
+            var circle_marker_6e492ba9ef0dcc89912177b086592ac4 = L.circleMarker(
+                [17.15, 104.13333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_af4bd436dcb403f72ff65535e6244d39 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_91b5c7745ddd551620647435195823e2 = $(`<div id="html_91b5c7745ddd551620647435195823e2" style="width: 100.0%; height: 100.0%;">สกลนคร - 0.0 มม.</div>`)[0];
+                popup_af4bd436dcb403f72ff65535e6244d39.setContent(html_91b5c7745ddd551620647435195823e2);
+            
+        
+
+        circle_marker_6e492ba9ef0dcc89912177b086592ac4.bindPopup(popup_af4bd436dcb403f72ff65535e6244d39)
+        ;
+
+        
+    
+    
+            var circle_marker_4a7ef44d662c4a8e3dfb1ff09f73ee3b = L.circleMarker(
+                [17.12503, 104.061],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_1c2c93a870ecde92f73c6a1dfa98a427 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5b8c4133b9f7302120e9a3e6e4820f53 = $(`<div id="html_5b8c4133b9f7302120e9a3e6e4820f53" style="width: 100.0%; height: 100.0%;">สกลนคร สกษ. - 0.0 มม.</div>`)[0];
+                popup_1c2c93a870ecde92f73c6a1dfa98a427.setContent(html_5b8c4133b9f7302120e9a3e6e4820f53);
+            
+        
+
+        circle_marker_4a7ef44d662c4a8e3dfb1ff09f73ee3b.bindPopup(popup_1c2c93a870ecde92f73c6a1dfa98a427)
+        ;
+
+        
+    
+    
+            var circle_marker_8ff9442d247e3ee867e3c4d649ef50d9 = L.circleMarker(
+                [17.41083, 104.7825],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_a4e7bde8b5a1a34b1776e9c0afff4aff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8b3178726adb3594c7487c04c7bfa4b0 = $(`<div id="html_8b3178726adb3594c7487c04c7bfa4b0" style="width: 100.0%; height: 100.0%;">นครพนม - 0.0 มม.</div>`)[0];
+                popup_a4e7bde8b5a1a34b1776e9c0afff4aff.setContent(html_8b3178726adb3594c7487c04c7bfa4b0);
+            
+        
+
+        circle_marker_8ff9442d247e3ee867e3c4d649ef50d9.bindPopup(popup_a4e7bde8b5a1a34b1776e9c0afff4aff)
+        ;
+
+        
+    
+    
+            var circle_marker_596a1dd49ebaa8ed1d86d705b4bab5d2 = L.circleMarker(
+                [17.44306, 104.77361],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_8e349a44306c3898d259c7565ba8dabb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6abc18ac8417bf51dd804e946d32f16f = $(`<div id="html_6abc18ac8417bf51dd804e946d32f16f" style="width: 100.0%; height: 100.0%;">นครพนม สกษ. - 0.0 มม.</div>`)[0];
+                popup_8e349a44306c3898d259c7565ba8dabb.setContent(html_6abc18ac8417bf51dd804e946d32f16f);
+            
+        
+
+        circle_marker_596a1dd49ebaa8ed1d86d705b4bab5d2.bindPopup(popup_8e349a44306c3898d259c7565ba8dabb)
+        ;
+
+        
+    
+    
+            var circle_marker_b8c0f4f7ab5c7acf51e2dece50769438 = L.circleMarker(
+                [17.2325, 102.42944],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_a0c5244e8e990ee9d06acb56215d5640 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a0ddcfa82d734f3671fe3b5141434fd8 = $(`<div id="html_a0ddcfa82d734f3671fe3b5141434fd8" style="width: 100.0%; height: 100.0%;">หนองบัวลำภู - 0.0 มม.</div>`)[0];
+                popup_a0c5244e8e990ee9d06acb56215d5640.setContent(html_a0ddcfa82d734f3671fe3b5141434fd8);
+            
+        
+
+        circle_marker_b8c0f4f7ab5c7acf51e2dece50769438.bindPopup(popup_a0c5244e8e990ee9d06acb56215d5640)
+        ;
+
+        
+    
+    
+            var circle_marker_0f7c10b997f5aa603643d1a183b24f87 = L.circleMarker(
+                [18.41361, 103.51672],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_184731f1784f5ded6b85bd5bcd8e80d4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_020ce0167dae7b6cc35603594996ad9e = $(`<div id="html_020ce0167dae7b6cc35603594996ad9e" style="width: 100.0%; height: 100.0%;">บึงกาฬ - 21.4 มม.</div>`)[0];
+                popup_184731f1784f5ded6b85bd5bcd8e80d4.setContent(html_020ce0167dae7b6cc35603594996ad9e);
+            
+        
+
+        circle_marker_0f7c10b997f5aa603643d1a183b24f87.bindPopup(popup_184731f1784f5ded6b85bd5bcd8e80d4)
+        ;
+
+        
+    
+    
+            var circle_marker_d94047834715421b89cb8d5cdf4543da = L.circleMarker(
+                [17.10611, 99.8],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_b69c5fa956f9ad4e4ae99eabe0fd6424 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_36df87ba9a57183a37daaccf0a9f8408 = $(`<div id="html_36df87ba9a57183a37daaccf0a9f8408" style="width: 100.0%; height: 100.0%;">สุโขทัย - 0.0 มม.</div>`)[0];
+                popup_b69c5fa956f9ad4e4ae99eabe0fd6424.setContent(html_36df87ba9a57183a37daaccf0a9f8408);
+            
+        
+
+        circle_marker_d94047834715421b89cb8d5cdf4543da.bindPopup(popup_b69c5fa956f9ad4e4ae99eabe0fd6424)
+        ;
+
+        
+    
+    
+            var circle_marker_0d96538bdd9ff3d39a841648fdfb7c46 = L.circleMarker(
+                [17.16136, 99.86167],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_14253b70404de3bcc9acd6b0a1c81598 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7d7f0f84e80d89ab7c7a55ebc9ef4956 = $(`<div id="html_7d7f0f84e80d89ab7c7a55ebc9ef4956" style="width: 100.0%; height: 100.0%;">ศรีสำโรง สกษ. - 0.0 มม.</div>`)[0];
+                popup_14253b70404de3bcc9acd6b0a1c81598.setContent(html_7d7f0f84e80d89ab7c7a55ebc9ef4956);
+            
+        
+
+        circle_marker_0d96538bdd9ff3d39a841648fdfb7c46.bindPopup(popup_14253b70404de3bcc9acd6b0a1c81598)
+        ;
+
+        
+    
+    
+            var circle_marker_40b57372233ff66c6d914a09eafc9b51 = L.circleMarker(
+                [16.87833, 99.14333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_968ad391b1d542cd277e994cc0b6aeff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_72c8767fbca7fc3b5583b2f9d4d6d260 = $(`<div id="html_72c8767fbca7fc3b5583b2f9d4d6d260" style="width: 100.0%; height: 100.0%;">ตาก - 0.0 มม.</div>`)[0];
+                popup_968ad391b1d542cd277e994cc0b6aeff.setContent(html_72c8767fbca7fc3b5583b2f9d4d6d260);
+            
+        
+
+        circle_marker_40b57372233ff66c6d914a09eafc9b51.bindPopup(popup_968ad391b1d542cd277e994cc0b6aeff)
+        ;
+
+        
+    
+    
+            var circle_marker_36e100d0ef5efdbb6d0baa3914f43468 = L.circleMarker(
+                [16.65917, 98.55083],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_4580bec049ebc5dbcb2c9ac71372a7a6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a76755816d8338a82ba7fb67815bc0f0 = $(`<div id="html_a76755816d8338a82ba7fb67815bc0f0" style="width: 100.0%; height: 100.0%;">แม่สอด - 0.01 มม.</div>`)[0];
+                popup_4580bec049ebc5dbcb2c9ac71372a7a6.setContent(html_a76755816d8338a82ba7fb67815bc0f0);
+            
+        
+
+        circle_marker_36e100d0ef5efdbb6d0baa3914f43468.bindPopup(popup_4580bec049ebc5dbcb2c9ac71372a7a6)
+        ;
+
+        
+    
+    
+            var circle_marker_ea6fe66851512d9885352d39ed28e515 = L.circleMarker(
+                [17.24389, 99.0025],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_c1894d3b87f4c61bbe89aa7e935c2e38 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5b27facb0b6e0bbf54da831fa8b6f3f8 = $(`<div id="html_5b27facb0b6e0bbf54da831fa8b6f3f8" style="width: 100.0%; height: 100.0%;">เขื่อนภูมิพล - 0.0 มม.</div>`)[0];
+                popup_c1894d3b87f4c61bbe89aa7e935c2e38.setContent(html_5b27facb0b6e0bbf54da831fa8b6f3f8);
+            
+        
+
+        circle_marker_ea6fe66851512d9885352d39ed28e515.bindPopup(popup_c1894d3b87f4c61bbe89aa7e935c2e38)
+        ;
+
+        
+    
+    
+            var circle_marker_443e2323122656f895034d9086821949 = L.circleMarker(
+                [16.75, 98.93333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_272814637457e08031a9ef107fc84a18 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7ccb0b2528811aa46d46b1d175cb9c66 = $(`<div id="html_7ccb0b2528811aa46d46b1d175cb9c66" style="width: 100.0%; height: 100.0%;">ดอยมูเซอร์ สกษ. - 6.4 มม.</div>`)[0];
+                popup_272814637457e08031a9ef107fc84a18.setContent(html_7ccb0b2528811aa46d46b1d175cb9c66);
+            
+        
+
+        circle_marker_443e2323122656f895034d9086821949.bindPopup(popup_272814637457e08031a9ef107fc84a18)
+        ;
+
+        
+    
+    
+            var circle_marker_be2a7843510a49654305edf862c64cd4 = L.circleMarker(
+                [16.02472, 98.86444],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_eeb6dc24e313163df831aa33a70a0593 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f4f8d9fd982ea3ab448cb3e12ce5ca34 = $(`<div id="html_f4f8d9fd982ea3ab448cb3e12ce5ca34" style="width: 100.0%; height: 100.0%;">อุ้มผาง - 8.2 มม.</div>`)[0];
+                popup_eeb6dc24e313163df831aa33a70a0593.setContent(html_f4f8d9fd982ea3ab448cb3e12ce5ca34);
+            
+        
+
+        circle_marker_be2a7843510a49654305edf862c64cd4.bindPopup(popup_eeb6dc24e313163df831aa33a70a0593)
+        ;
+
+        
+    
+    
+            var circle_marker_02158b8f4c88af6a4b7b911f3c02c011 = L.circleMarker(
+                [16.79481, 100.2793],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_9c2e7279715964257057dc971151e880 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ee67e05e8a9dc630cfa80b48efa30dc7 = $(`<div id="html_ee67e05e8a9dc630cfa80b48efa30dc7" style="width: 100.0%; height: 100.0%;">พิษณุโลก - 0.0 มม.</div>`)[0];
+                popup_9c2e7279715964257057dc971151e880.setContent(html_ee67e05e8a9dc630cfa80b48efa30dc7);
+            
+        
+
+        circle_marker_02158b8f4c88af6a4b7b911f3c02c011.bindPopup(popup_9c2e7279715964257057dc971151e880)
+        ;
+
+        
+    
+    
+            var circle_marker_545f7ea3d2053cf14b0a1c14f7194e6e = L.circleMarker(
+                [16.43333, 101.15],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_2175efcf7942c725a9c813b442475111 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bdef588086e21b0955ac25caec9dc205 = $(`<div id="html_bdef588086e21b0955ac25caec9dc205" style="width: 100.0%; height: 100.0%;">เพชรบูรณ์ - 0.0 มม.</div>`)[0];
+                popup_2175efcf7942c725a9c813b442475111.setContent(html_bdef588086e21b0955ac25caec9dc205);
+            
+        
+
+        circle_marker_545f7ea3d2053cf14b0a1c14f7194e6e.bindPopup(popup_2175efcf7942c725a9c813b442475111)
+        ;
+
+        
+    
+    
+            var circle_marker_5e836f7e83b632d6dab72ad060f1d8bc = L.circleMarker(
+                [16.77361, 101.24944],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_5081eae6acb28b204701d455261d3e0d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_080d289d78e799eb50932cd9e750682c = $(`<div id="html_080d289d78e799eb50932cd9e750682c" style="width: 100.0%; height: 100.0%;">หล่มสัก - 16.2 มม.</div>`)[0];
+                popup_5081eae6acb28b204701d455261d3e0d.setContent(html_080d289d78e799eb50932cd9e750682c);
+            
+        
+
+        circle_marker_5e836f7e83b632d6dab72ad060f1d8bc.bindPopup(popup_5081eae6acb28b204701d455261d3e0d)
+        ;
+
+        
+    
+    
+            var circle_marker_d1a26864649f4802f83ee57c313a03d6 = L.circleMarker(
+                [15.657, 101.108],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_ccc797f0b2b72d6bbf542dacd887664c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_30b02137503ae91e7ac2aaddde980f17 = $(`<div id="html_30b02137503ae91e7ac2aaddde980f17" style="width: 100.0%; height: 100.0%;">วิเชียรบุรี - 0.0 มม.</div>`)[0];
+                popup_ccc797f0b2b72d6bbf542dacd887664c.setContent(html_30b02137503ae91e7ac2aaddde980f17);
+            
+        
+
+        circle_marker_d1a26864649f4802f83ee57c313a03d6.bindPopup(popup_ccc797f0b2b72d6bbf542dacd887664c)
+        ;
+
+        
+    
+    
+            var circle_marker_cf7a3c44f248e9e224329511c3eaca77 = L.circleMarker(
+                [16.48681, 99.52697],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_49ba488f105f33e1567b2be26f10b156 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7fa7957f9e5a92b5d3a4f7c05227f8fd = $(`<div id="html_7fa7957f9e5a92b5d3a4f7c05227f8fd" style="width: 100.0%; height: 100.0%;">กำแพงเพชร - 0.0 มม.</div>`)[0];
+                popup_49ba488f105f33e1567b2be26f10b156.setContent(html_7fa7957f9e5a92b5d3a4f7c05227f8fd);
+            
+        
+
+        circle_marker_cf7a3c44f248e9e224329511c3eaca77.bindPopup(popup_49ba488f105f33e1567b2be26f10b156)
+        ;
+
+        
+    
+    
+            var circle_marker_0d682595e64abc7a1b4df756d83f6d96 = L.circleMarker(
+                [16.46111, 102.78972],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_67aba781a15f7bda242651efb40d4bf0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e40fc4acd7540b174733d5b555a5422e = $(`<div id="html_e40fc4acd7540b174733d5b555a5422e" style="width: 100.0%; height: 100.0%;">ขอนแก่น - 1.2 มม.</div>`)[0];
+                popup_67aba781a15f7bda242651efb40d4bf0.setContent(html_e40fc4acd7540b174733d5b555a5422e);
+            
+        
+
+        circle_marker_0d682595e64abc7a1b4df756d83f6d96.bindPopup(popup_67aba781a15f7bda242651efb40d4bf0)
+        ;
+
+        
+    
+    
+            var circle_marker_65c6b2e76d586dd414ec66a46fc3b1ad = L.circleMarker(
+                [16.33333, 102.81667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_7241501c0138781f37ed9e9df50e0574 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_be5e548bad394e8665978ebfc17f5ab6 = $(`<div id="html_be5e548bad394e8665978ebfc17f5ab6" style="width: 100.0%; height: 100.0%;">ท่าพระ สกษ. - 0.0 มม.</div>`)[0];
+                popup_7241501c0138781f37ed9e9df50e0574.setContent(html_be5e548bad394e8665978ebfc17f5ab6);
+            
+        
+
+        circle_marker_65c6b2e76d586dd414ec66a46fc3b1ad.bindPopup(popup_7241501c0138781f37ed9e9df50e0574)
+        ;
+
+        
+    
+    
+            var circle_marker_060202d7fa8a4d240d195b821bc70856 = L.circleMarker(
+                [16.54139, 104.72889],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_6c39eb40fa86ec7e7c20a6f918643409 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_21bfe4283667db9f236854470d544899 = $(`<div id="html_21bfe4283667db9f236854470d544899" style="width: 100.0%; height: 100.0%;">มุกดาหาร - 0.0 มม.</div>`)[0];
+                popup_6c39eb40fa86ec7e7c20a6f918643409.setContent(html_21bfe4283667db9f236854470d544899);
+            
+        
+
+        circle_marker_060202d7fa8a4d240d195b821bc70856.bindPopup(popup_6c39eb40fa86ec7e7c20a6f918643409)
+        ;
+
+        
+    
+    
+            var circle_marker_8578af9fb83b0893d0878ef226556dae = L.circleMarker(
+                [16.43806, 100.2925],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_522b76afb8c440512848a86b6c15f97e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_79c533b0aff689bae7e13697e2518ab5 = $(`<div id="html_79c533b0aff689bae7e13697e2518ab5" style="width: 100.0%; height: 100.0%;">พิจิตร สกษ. - 0.0 มม.</div>`)[0];
+                popup_522b76afb8c440512848a86b6c15f97e.setContent(html_79c533b0aff689bae7e13697e2518ab5);
+            
+        
+
+        circle_marker_8578af9fb83b0893d0878ef226556dae.bindPopup(popup_522b76afb8c440512848a86b6c15f97e)
+        ;
+
+        
+    
+    
+            var circle_marker_6d08ed79e9818b53b28291f162c169ed = L.circleMarker(
+                [16.24722, 103.06805],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_9e66ded49887c4afac0dca4029b63415 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_14b44be23061f30e2f4a3fc69c8c15be = $(`<div id="html_14b44be23061f30e2f4a3fc69c8c15be" style="width: 100.0%; height: 100.0%;">มหาสารคาม - 0.0 มม.</div>`)[0];
+                popup_9e66ded49887c4afac0dca4029b63415.setContent(html_14b44be23061f30e2f4a3fc69c8c15be);
+            
+        
+
+        circle_marker_6d08ed79e9818b53b28291f162c169ed.bindPopup(popup_9e66ded49887c4afac0dca4029b63415)
+        ;
+
+        
+    
+    
+            var circle_marker_55ed5323ca35d03619e3bc62793a2fbb = L.circleMarker(
+                [16.3325, 103.58833],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_b03f454ab93eecd88789ca091c9a7c69 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1c054779d0baad24608aa4f582b8b06f = $(`<div id="html_1c054779d0baad24608aa4f582b8b06f" style="width: 100.0%; height: 100.0%;">กาฬสินธุ์ - 0.0 มม.</div>`)[0];
+                popup_b03f454ab93eecd88789ca091c9a7c69.setContent(html_1c054779d0baad24608aa4f582b8b06f);
+            
+        
+
+        circle_marker_55ed5323ca35d03619e3bc62793a2fbb.bindPopup(popup_b03f454ab93eecd88789ca091c9a7c69)
+        ;
+
+        
+    
+    
+            var circle_marker_2e59bca35b4069cb739184f68e60ef41 = L.circleMarker(
+                [15.90375, 104.61805],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_2e26310bb20e1c0b00661e43511553d7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_93a121de806ed1a4254a796ebf035040 = $(`<div id="html_93a121de806ed1a4254a796ebf035040" style="width: 100.0%; height: 100.0%;">อำนาจเจริญ - 0.0 มม.</div>`)[0];
+                popup_2e26310bb20e1c0b00661e43511553d7.setContent(html_93a121de806ed1a4254a796ebf035040);
+            
+        
+
+        circle_marker_2e59bca35b4069cb739184f68e60ef41.bindPopup(popup_2e26310bb20e1c0b00661e43511553d7)
+        ;
+
+        
+    
+    
+            var circle_marker_2541749ef880e56ab40612b68b63f2cf = L.circleMarker(
+                [15.67183, 100.13236],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_a4fa13554bab0fc0247e69b6d506049a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_174d54318e9d29460054e0f1cd3f8c52 = $(`<div id="html_174d54318e9d29460054e0f1cd3f8c52" style="width: 100.0%; height: 100.0%;">นครสวรรค์ - 0.0 มม.</div>`)[0];
+                popup_a4fa13554bab0fc0247e69b6d506049a.setContent(html_174d54318e9d29460054e0f1cd3f8c52);
+            
+        
+
+        circle_marker_2541749ef880e56ab40612b68b63f2cf.bindPopup(popup_a4fa13554bab0fc0247e69b6d506049a)
+        ;
+
+        
+    
+    
+            var circle_marker_a21824c1ba811e79fab3b37d4e6e6abc = L.circleMarker(
+                [15.34944, 100.53028],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_d4804d0e96736e338a550a24c3f3770d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_07feb2e357dc78c585de73cc62242c6e = $(`<div id="html_07feb2e357dc78c585de73cc62242c6e" style="width: 100.0%; height: 100.0%;">ตากฟ้า สกษ. - 13.6 มม.</div>`)[0];
+                popup_d4804d0e96736e338a550a24c3f3770d.setContent(html_07feb2e357dc78c585de73cc62242c6e);
+            
+        
+
+        circle_marker_a21824c1ba811e79fab3b37d4e6e6abc.bindPopup(popup_d4804d0e96736e338a550a24c3f3770d)
+        ;
+
+        
+    
+    
+            var circle_marker_a519a1bcb571ff8a4d541982d750d2cf = L.circleMarker(
+                [15.15, 100.18333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_5031883fb6fb5180caeda8b9f64c5861 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_453dd3f234b78761c705bfe18573f4b3 = $(`<div id="html_453dd3f234b78761c705bfe18573f4b3" style="width: 100.0%; height: 100.0%;">ชัยนาท สกษ. - 2.5 มม.</div>`)[0];
+                popup_5031883fb6fb5180caeda8b9f64c5861.setContent(html_453dd3f234b78761c705bfe18573f4b3);
+            
+        
+
+        circle_marker_a519a1bcb571ff8a4d541982d750d2cf.bindPopup(popup_5031883fb6fb5180caeda8b9f64c5861)
+        ;
+
+        
+    
+    
+            var circle_marker_5940230a887b172c33109c92a5e2a234 = L.circleMarker(
+                [15.8, 102.03333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f57b655d099a7a7de530c80f1a4ab9de = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ff84830042c850fd7139e9777888a888 = $(`<div id="html_ff84830042c850fd7139e9777888a888" style="width: 100.0%; height: 100.0%;">ชัยภูมิ - 0.0 มม.</div>`)[0];
+                popup_f57b655d099a7a7de530c80f1a4ab9de.setContent(html_ff84830042c850fd7139e9777888a888);
+            
+        
+
+        circle_marker_5940230a887b172c33109c92a5e2a234.bindPopup(popup_f57b655d099a7a7de530c80f1a4ab9de)
+        ;
+
+        
+    
+    
+            var circle_marker_c97ed29fd31f12d954422e88a1f92bde = L.circleMarker(
+                [16.02, 103.74389],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_23ef7beb3d4911a13399f3361d7a6836 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_013367aff0815e57ba5349e2f2db9991 = $(`<div id="html_013367aff0815e57ba5349e2f2db9991" style="width: 100.0%; height: 100.0%;">ร้อยเอ็ด - 0.0 มม.</div>`)[0];
+                popup_23ef7beb3d4911a13399f3361d7a6836.setContent(html_013367aff0815e57ba5349e2f2db9991);
+            
+        
+
+        circle_marker_c97ed29fd31f12d954422e88a1f92bde.bindPopup(popup_23ef7beb3d4911a13399f3361d7a6836)
+        ;
+
+        
+    
+    
+            var circle_marker_c0041c5a603cb9ad75abdb56dc62a24a = L.circleMarker(
+                [16.07322, 103.60844],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f7cf16150b9bec6ea950235f6cddb471 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_079cd4154597996e81ff9babf3dbb458 = $(`<div id="html_079cd4154597996e81ff9babf3dbb458" style="width: 100.0%; height: 100.0%;">ร้อยเอ็ด สกษ. - 0.0 มม.</div>`)[0];
+                popup_f7cf16150b9bec6ea950235f6cddb471.setContent(html_079cd4154597996e81ff9babf3dbb458);
+            
+        
+
+        circle_marker_c0041c5a603cb9ad75abdb56dc62a24a.bindPopup(popup_f7cf16150b9bec6ea950235f6cddb471)
+        ;
+
+        
+    
+    
+            var circle_marker_e90fe76dde1e7ddfb304ea291b683d33 = L.circleMarker(
+                [15.79494, 104.21436],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_0beb11b5c9549d7b16bae4d0b19bda26 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_be393029d332dbb0917a07f83a1b4cb8 = $(`<div id="html_be393029d332dbb0917a07f83a1b4cb8" style="width: 100.0%; height: 100.0%;">ยโสธร - 0.0 มม.</div>`)[0];
+                popup_0beb11b5c9549d7b16bae4d0b19bda26.setContent(html_be393029d332dbb0917a07f83a1b4cb8);
+            
+        
+
+        circle_marker_e90fe76dde1e7ddfb304ea291b683d33.bindPopup(popup_0beb11b5c9549d7b16bae4d0b19bda26)
+        ;
+
+        
+    
+    
+            var circle_marker_7ef16268a9ca270a0d2c7803341df2a0 = L.circleMarker(
+                [15.23914, 105.0235],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_59d1d8d7813b4de479e0b3c433588b85 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_87579b182b9ada1806a141f42d3b25da = $(`<div id="html_87579b182b9ada1806a141f42d3b25da" style="width: 100.0%; height: 100.0%;">อุบลราชธานี สกษ. - 0.0 มม.</div>`)[0];
+                popup_59d1d8d7813b4de479e0b3c433588b85.setContent(html_87579b182b9ada1806a141f42d3b25da);
+            
+        
+
+        circle_marker_7ef16268a9ca270a0d2c7803341df2a0.bindPopup(popup_59d1d8d7813b4de479e0b3c433588b85)
+        ;
+
+        
+    
+    
+            var circle_marker_493d4dedcc5acfbd1353ec1486602083 = L.circleMarker(
+                [15.25, 104.86667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_dd1f8812bd9406defaa94d2b79f6f4b4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_89f7641db29953eee4c0fb6b0389e955 = $(`<div id="html_89f7641db29953eee4c0fb6b0389e955" style="width: 100.0%; height: 100.0%;">อุบลราชธานี (ศูนย์ฯ) - 0.0 มม.</div>`)[0];
+                popup_dd1f8812bd9406defaa94d2b79f6f4b4.setContent(html_89f7641db29953eee4c0fb6b0389e955);
+            
+        
+
+        circle_marker_493d4dedcc5acfbd1353ec1486602083.bindPopup(popup_dd1f8812bd9406defaa94d2b79f6f4b4)
+        ;
+
+        
+    
+    
+            var circle_marker_aab7095175bccf69a2b9a997c4fab44f = L.circleMarker(
+                [15.0, 104.05],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_8508a73c3c3fa670cc3838b33724b1a8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e94e797497a416ea8951dd981b2facad = $(`<div id="html_e94e797497a416ea8951dd981b2facad" style="width: 100.0%; height: 100.0%;">ศรีสะเกษ - 0.0 มม.</div>`)[0];
+                popup_8508a73c3c3fa670cc3838b33724b1a8.setContent(html_e94e797497a416ea8951dd981b2facad);
+            
+        
+
+        circle_marker_aab7095175bccf69a2b9a997c4fab44f.bindPopup(popup_8508a73c3c3fa670cc3838b33724b1a8)
+        ;
+
+        
+    
+    
+            var circle_marker_cefdd720a22de8f583eae018f4f96eb6 = L.circleMarker(
+                [15.37417, 100.03889],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_9b2b82508138e0e4d0bcf9a0c57fac3f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2d869394e4d2f3c0e7f2e891cacc0d0d = $(`<div id="html_2d869394e4d2f3c0e7f2e891cacc0d0d" style="width: 100.0%; height: 100.0%;">อุทัยธานี - 0.0 มม.</div>`)[0];
+                popup_9b2b82508138e0e4d0bcf9a0c57fac3f.setContent(html_2d869394e4d2f3c0e7f2e891cacc0d0d);
+            
+        
+
+        circle_marker_cefdd720a22de8f583eae018f4f96eb6.bindPopup(popup_9b2b82508138e0e4d0bcf9a0c57fac3f)
+        ;
+
+        
+    
+    
+            var circle_marker_ffda3182f1444a5299f2dda43a8c32df = L.circleMarker(
+                [14.53472, 100.725],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_97d6cb08333b0c6455979c6c91c49e1d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_269c14b350c0a63cc84e3b113623a3f8 = $(`<div id="html_269c14b350c0a63cc84e3b113623a3f8" style="width: 100.0%; height: 100.0%;">พระนครศรีอยุธยา - 1.6 มม.</div>`)[0];
+                popup_97d6cb08333b0c6455979c6c91c49e1d.setContent(html_269c14b350c0a63cc84e3b113623a3f8);
+            
+        
+
+        circle_marker_ffda3182f1444a5299f2dda43a8c32df.bindPopup(popup_97d6cb08333b0c6455979c6c91c49e1d)
+        ;
+
+        
+    
+    
+            var circle_marker_2261bc8775b5a188015bcd112e273631 = L.circleMarker(
+                [14.36222, 101.39278],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_01dabdb94b008e0461b40129125918aa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9f39b701c2a31e1a12183a023f352fd1 = $(`<div id="html_9f39b701c2a31e1a12183a023f352fd1" style="width: 100.0%; height: 100.0%;">นครนายก - 16.6 มม.</div>`)[0];
+                popup_01dabdb94b008e0461b40129125918aa.setContent(html_9f39b701c2a31e1a12183a023f352fd1);
+            
+        
+
+        circle_marker_2261bc8775b5a188015bcd112e273631.bindPopup(popup_01dabdb94b008e0461b40129125918aa)
+        ;
+
+        
+    
+    
+            var circle_marker_636edf45bd795e7236ee627bc8a64d82 = L.circleMarker(
+                [14.1, 100.61667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_351571d407900f027fc4fa2860c7bc21 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3dbe396f2e3f053fd3b679f97d98037e = $(`<div id="html_3dbe396f2e3f053fd3b679f97d98037e" style="width: 100.0%; height: 100.0%;">ปทุมธานี สกษ. - 5.3 มม.</div>`)[0];
+                popup_351571d407900f027fc4fa2860c7bc21.setContent(html_3dbe396f2e3f053fd3b679f97d98037e);
+            
+        
+
+        circle_marker_636edf45bd795e7236ee627bc8a64d82.bindPopup(popup_351571d407900f027fc4fa2860c7bc21)
+        ;
+
+        
+    
+    
+            var circle_marker_f9bf445e6cc81a75642896ba7d92d897 = L.circleMarker(
+                [13.51556, 101.45833],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f7fa0584b6ff5fef042a4f14c36bc2b1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f1efb59524c5a3cb8ce554ac12a7d1bd = $(`<div id="html_f1efb59524c5a3cb8ce554ac12a7d1bd" style="width: 100.0%; height: 100.0%;">ฉะเชิงเทรา - 0.0 มม.</div>`)[0];
+                popup_f7fa0584b6ff5fef042a4f14c36bc2b1.setContent(html_f1efb59524c5a3cb8ce554ac12a7d1bd);
+            
+        
+
+        circle_marker_f9bf445e6cc81a75642896ba7d92d897.bindPopup(popup_f7fa0584b6ff5fef042a4f14c36bc2b1)
+        ;
+
+        
+    
+    
+            var circle_marker_0e7ff7475028e4e953f18c15b75ea24e = L.circleMarker(
+                [13.48931, 99.79239],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_bb80b09246deb38feaba080abd8ba8c8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3376342d9bf08ae0098ca7b26cf4e93e = $(`<div id="html_3376342d9bf08ae0098ca7b26cf4e93e" style="width: 100.0%; height: 100.0%;">ราชบุรี - 0.0 มม.</div>`)[0];
+                popup_bb80b09246deb38feaba080abd8ba8c8.setContent(html_3376342d9bf08ae0098ca7b26cf4e93e);
+            
+        
+
+        circle_marker_0e7ff7475028e4e953f18c15b75ea24e.bindPopup(popup_bb80b09246deb38feaba080abd8ba8c8)
+        ;
+
+        
+    
+    
+            var circle_marker_fbc74f16bf70c4426800485ca2f3fe1d = L.circleMarker(
+                [14.47444, 100.13889],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_8ed498874d378653a0fb9728084c5cb9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4c58107cdef19fcc1c9359684d92b007 = $(`<div id="html_4c58107cdef19fcc1c9359684d92b007" style="width: 100.0%; height: 100.0%;">สุพรรณบุรี - 0.3 มม.</div>`)[0];
+                popup_8ed498874d378653a0fb9728084c5cb9.setContent(html_4c58107cdef19fcc1c9359684d92b007);
+            
+        
+
+        circle_marker_fbc74f16bf70c4426800485ca2f3fe1d.bindPopup(popup_8ed498874d378653a0fb9728084c5cb9)
+        ;
+
+        
+    
+    
+            var circle_marker_10b3541abd36518020148b8877e02db2 = L.circleMarker(
+                [14.30361, 99.86472],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f5714c8ef29d650bc99dd7420fda780d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_01b1b320202acce0ae426163595e8720 = $(`<div id="html_01b1b320202acce0ae426163595e8720" style="width: 100.0%; height: 100.0%;">อู่ทอง สกษ. - 0.0 มม.</div>`)[0];
+                popup_f5714c8ef29d650bc99dd7420fda780d.setContent(html_01b1b320202acce0ae426163595e8720);
+            
+        
+
+        circle_marker_10b3541abd36518020148b8877e02db2.bindPopup(popup_f5714c8ef29d650bc99dd7420fda780d)
+        ;
+
+        
+    
+    
+            var circle_marker_07688f3414bf4837ecbdf4a2dd14b54c = L.circleMarker(
+                [14.79972, 100.645],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_c95925f5b444664c73a914d5855b6f2b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c598f86390b04b52e1c910c66cc59e25 = $(`<div id="html_c598f86390b04b52e1c910c66cc59e25" style="width: 100.0%; height: 100.0%;">ลพบุรี - 11.5 มม.</div>`)[0];
+                popup_c95925f5b444664c73a914d5855b6f2b.setContent(html_c598f86390b04b52e1c910c66cc59e25);
+            
+        
+
+        circle_marker_07688f3414bf4837ecbdf4a2dd14b54c.bindPopup(popup_c95925f5b444664c73a914d5855b6f2b)
+        ;
+
+        
+    
+    
+            var circle_marker_901cef08c953de06936d084b447d4acb = L.circleMarker(
+                [15.26667, 101.18736],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_b92983b995489be2bc73954d23016584 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_75972e6b2199a19bd294d4513be6178b = $(`<div id="html_75972e6b2199a19bd294d4513be6178b" style="width: 100.0%; height: 100.0%;">บัวชุม - 0.0 มม.</div>`)[0];
+                popup_b92983b995489be2bc73954d23016584.setContent(html_75972e6b2199a19bd294d4513be6178b);
+            
+        
+
+        circle_marker_901cef08c953de06936d084b447d4acb.bindPopup(popup_b92983b995489be2bc73954d23016584)
+        ;
+
+        
+    
+    
+            var circle_marker_31b2fcf5be0609774f61fc258b823817 = L.circleMarker(
+                [13.39389, 100.59944],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f9e773e0a75f758bf8fdfdbe96ce5ac8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e971600f5b2a138566d60ef5b79ca496 = $(`<div id="html_e971600f5b2a138566d60ef5b79ca496" style="width: 100.0%; height: 100.0%;">นำร่อง - 0.0 มม.</div>`)[0];
+                popup_f9e773e0a75f758bf8fdfdbe96ce5ac8.setContent(html_e971600f5b2a138566d60ef5b79ca496);
+            
+        
+
+        circle_marker_31b2fcf5be0609774f61fc258b823817.bindPopup(popup_f9e773e0a75f758bf8fdfdbe96ce5ac8)
+        ;
+
+        
+    
+    
+            var circle_marker_0684d38bd0d873c5d1e160511a6a9e48 = L.circleMarker(
+                [13.51667, 100.76167],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_bbbf5922494c5884f953ecd12256a377 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c31fa06efe737d473969931b198edbdf = $(`<div id="html_c31fa06efe737d473969931b198edbdf" style="width: 100.0%; height: 100.0%;">สมุทรปราการ สกษ. - 0.0 มม.</div>`)[0];
+                popup_bbbf5922494c5884f953ecd12256a377.setContent(html_c31fa06efe737d473969931b198edbdf);
+            
+        
+
+        circle_marker_0684d38bd0d873c5d1e160511a6a9e48.bindPopup(popup_bbbf5922494c5884f953ecd12256a377)
+        ;
+
+        
+    
+    
+            var circle_marker_e105cde6012adfd5de6935d032d2f061 = L.circleMarker(
+                [13.68639, 100.7675],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_4317a1108019fff59d2f792a1f2df805 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2b449c24f3e6ca491f45d05d020ff717 = $(`<div id="html_2b449c24f3e6ca491f45d05d020ff717" style="width: 100.0%; height: 100.0%;">สนามบินสุวรรณภูมิ - 0.0 มม.</div>`)[0];
+                popup_4317a1108019fff59d2f792a1f2df805.setContent(html_2b449c24f3e6ca491f45d05d020ff717);
+            
+        
+
+        circle_marker_e105cde6012adfd5de6935d032d2f061.bindPopup(popup_4317a1108019fff59d2f792a1f2df805)
+        ;
+
+        
+    
+    
+            var circle_marker_c0bd09aea0ac5a259c558bcfd2574fda = L.circleMarker(
+                [14.05842, 101.3693],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_17de6cbc738e5b71854dceee504ab210 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_42dec4841e1b4b781be82a9fd3bd21c9 = $(`<div id="html_42dec4841e1b4b781be82a9fd3bd21c9" style="width: 100.0%; height: 100.0%;">ปราจีนบุรี - 1.6 มม.</div>`)[0];
+                popup_17de6cbc738e5b71854dceee504ab210.setContent(html_42dec4841e1b4b781be82a9fd3bd21c9);
+            
+        
+
+        circle_marker_c0bd09aea0ac5a259c558bcfd2574fda.bindPopup(popup_17de6cbc738e5b71854dceee504ab210)
+        ;
+
+        
+    
+    
+            var circle_marker_2a42c6f7732927eb789dea0acc612584 = L.circleMarker(
+                [13.98333, 101.70722],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_e3f1c99289b16253c29d4b77db193381 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d5d2a53be31daaf7df12b0836bcdd569 = $(`<div id="html_d5d2a53be31daaf7df12b0836bcdd569" style="width: 100.0%; height: 100.0%;">กบินทร์บุรี - 2.7 มม.</div>`)[0];
+                popup_e3f1c99289b16253c29d4b77db193381.setContent(html_d5d2a53be31daaf7df12b0836bcdd569);
+            
+        
+
+        circle_marker_2a42c6f7732927eb789dea0acc612584.bindPopup(popup_e3f1c99289b16253c29d4b77db193381)
+        ;
+
+        
+    
+    
+            var circle_marker_320873581dbbfca800b27374cf90ff8f = L.circleMarker(
+                [14.9683, 102.08603],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_d809d55521ecd6aadea8669eb1455ecc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b7aeba4a26cb1424a745b810ddef6e75 = $(`<div id="html_b7aeba4a26cb1424a745b810ddef6e75" style="width: 100.0%; height: 100.0%;">นครราชสีมา - 0.0 มม.</div>`)[0];
+                popup_d809d55521ecd6aadea8669eb1455ecc.setContent(html_b7aeba4a26cb1424a745b810ddef6e75);
+            
+        
+
+        circle_marker_320873581dbbfca800b27374cf90ff8f.bindPopup(popup_d809d55521ecd6aadea8669eb1455ecc)
+        ;
+
+        
+    
+    
+            var circle_marker_3851cdd047e02cf8e0b9b2e728c706a9 = L.circleMarker(
+                [14.64389, 101.33194],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_84fe56f21ba3e4c9049515a257ac161c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1985789cb769e15dfaeb7f0bde4b71d3 = $(`<div id="html_1985789cb769e15dfaeb7f0bde4b71d3" style="width: 100.0%; height: 100.0%;">ปากช่อง สกษ. - 0.0 มม.</div>`)[0];
+                popup_84fe56f21ba3e4c9049515a257ac161c.setContent(html_1985789cb769e15dfaeb7f0bde4b71d3);
+            
+        
+
+        circle_marker_3851cdd047e02cf8e0b9b2e728c706a9.bindPopup(popup_84fe56f21ba3e4c9049515a257ac161c)
+        ;
+
+        
+    
+    
+            var circle_marker_bbf16e938739453e27a81266f73d27db = L.circleMarker(
+                [14.71889, 102.16861],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_722740a9b54d4c91fda4af1063979766 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ccd8c38042e1f2bbad87bdd3f957e224 = $(`<div id="html_ccd8c38042e1f2bbad87bdd3f957e224" style="width: 100.0%; height: 100.0%;">โชคชัย - 0.0 มม.</div>`)[0];
+                popup_722740a9b54d4c91fda4af1063979766.setContent(html_ccd8c38042e1f2bbad87bdd3f957e224);
+            
+        
+
+        circle_marker_bbf16e938739453e27a81266f73d27db.bindPopup(popup_722740a9b54d4c91fda4af1063979766)
+        ;
+
+        
+    
+    
+            var circle_marker_d8e3705e58bc6b517be105f5b9f712e2 = L.circleMarker(
+                [14.88333, 103.5],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_fe3dca97d19c89486ac112f0f7d2c620 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_27e9adebf4cbad1e6cb73107bd4cad5c = $(`<div id="html_27e9adebf4cbad1e6cb73107bd4cad5c" style="width: 100.0%; height: 100.0%;">สุรินทร์ - 0.0 มม.</div>`)[0];
+                popup_fe3dca97d19c89486ac112f0f7d2c620.setContent(html_27e9adebf4cbad1e6cb73107bd4cad5c);
+            
+        
+
+        circle_marker_d8e3705e58bc6b517be105f5b9f712e2.bindPopup(popup_fe3dca97d19c89486ac112f0f7d2c620)
+        ;
+
+        
+    
+    
+            var circle_marker_8754ab7256135d888212fe9bdb652e0e = L.circleMarker(
+                [14.88333, 103.45],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_37ab4825108dc1af327c12966907e47a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3df5d5391bf8566da4e8ad226c0b7b22 = $(`<div id="html_3df5d5391bf8566da4e8ad226c0b7b22" style="width: 100.0%; height: 100.0%;">สุรินทร์ สกษ. - 0.0 มม.</div>`)[0];
+                popup_37ab4825108dc1af327c12966907e47a.setContent(html_3df5d5391bf8566da4e8ad226c0b7b22);
+            
+        
+
+        circle_marker_8754ab7256135d888212fe9bdb652e0e.bindPopup(popup_37ab4825108dc1af327c12966907e47a)
+        ;
+
+        
+    
+    
+            var circle_marker_2015d7abb82246d6151592973811d5a0 = L.circleMarker(
+                [15.31667, 103.68333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_09ba53ca3cb6caa890af20c1b815d133 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d18422bd0384be26ae34b607e95b8b3f = $(`<div id="html_d18422bd0384be26ae34b607e95b8b3f" style="width: 100.0%; height: 100.0%;">ท่าตูม - 0.0 มม.</div>`)[0];
+                popup_09ba53ca3cb6caa890af20c1b815d133.setContent(html_d18422bd0384be26ae34b607e95b8b3f);
+            
+        
+
+        circle_marker_2015d7abb82246d6151592973811d5a0.bindPopup(popup_09ba53ca3cb6caa890af20c1b815d133)
+        ;
+
+        
+    
+    
+            var circle_marker_289bd81e04e543854572cd31dc9439b1 = L.circleMarker(
+                [15.22575, 103.24808],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_137284a207fb37ee8f16662e8efd7089 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fc5bc9f60e4bfe2b801c6a8acf0d54e6 = $(`<div id="html_fc5bc9f60e4bfe2b801c6a8acf0d54e6" style="width: 100.0%; height: 100.0%;">บุรีรัมย์ - 0.0 มม.</div>`)[0];
+                popup_137284a207fb37ee8f16662e8efd7089.setContent(html_fc5bc9f60e4bfe2b801c6a8acf0d54e6);
+            
+        
+
+        circle_marker_289bd81e04e543854572cd31dc9439b1.bindPopup(popup_137284a207fb37ee8f16662e8efd7089)
+        ;
+
+        
+    
+    
+            var circle_marker_a70ec6d58d0c02e502e9f27cdab923a4 = L.circleMarker(
+                [14.58333, 102.8],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_035d83f0312ff6b2265cf9fd7e200c0b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_44b77a0ce0166223569a3fd956c374e1 = $(`<div id="html_44b77a0ce0166223569a3fd956c374e1" style="width: 100.0%; height: 100.0%;">นางรอง - 21.0 มม.</div>`)[0];
+                popup_035d83f0312ff6b2265cf9fd7e200c0b.setContent(html_44b77a0ce0166223569a3fd956c374e1);
+            
+        
+
+        circle_marker_a70ec6d58d0c02e502e9f27cdab923a4.bindPopup(popup_035d83f0312ff6b2265cf9fd7e200c0b)
+        ;
+
+        
+    
+    
+            var circle_marker_f89b57a2b9eff72019b133e10f099671 = L.circleMarker(
+                [13.40778, 100.03222],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_95f54d1a23e72a589eb7fc52e823e1f3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1d9cee9458b004a183682d3dcd2ee0a6 = $(`<div id="html_1d9cee9458b004a183682d3dcd2ee0a6" style="width: 100.0%; height: 100.0%;">สมุทรสงคราม - 0.0 มม.</div>`)[0];
+                popup_95f54d1a23e72a589eb7fc52e823e1f3.setContent(html_1d9cee9458b004a183682d3dcd2ee0a6);
+            
+        
+
+        circle_marker_f89b57a2b9eff72019b133e10f099671.bindPopup(popup_95f54d1a23e72a589eb7fc52e823e1f3)
+        ;
+
+        
+    
+    
+            var circle_marker_5177a8c1be532d0eec3221cd7166562e = L.circleMarker(
+                [13.7, 102.58333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_c9430a3cece3d265641239ed676ca7e5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6c739d71f490767e8c436313752557fa = $(`<div id="html_6c739d71f490767e8c436313752557fa" style="width: 100.0%; height: 100.0%;">อรัญประเทศ - 0.0 มม.</div>`)[0];
+                popup_c9430a3cece3d265641239ed676ca7e5.setContent(html_6c739d71f490767e8c436313752557fa);
+            
+        
+
+        circle_marker_5177a8c1be532d0eec3221cd7166562e.bindPopup(popup_c9430a3cece3d265641239ed676ca7e5)
+        ;
+
+        
+    
+    
+            var circle_marker_d00d93fa15347ebbd77a5f5bb89e6a06 = L.circleMarker(
+                [13.78889, 102.03472],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_85f32b19024289acb0699fc0988ba64a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8e486e8dd5145bd5472b8979171c9815 = $(`<div id="html_8e486e8dd5145bd5472b8979171c9815" style="width: 100.0%; height: 100.0%;">สระแก้ว - 0.0 มม.</div>`)[0];
+                popup_85f32b19024289acb0699fc0988ba64a.setContent(html_8e486e8dd5145bd5472b8979171c9815);
+            
+        
+
+        circle_marker_d00d93fa15347ebbd77a5f5bb89e6a06.bindPopup(popup_85f32b19024289acb0699fc0988ba64a)
+        ;
+
+        
+    
+    
+            var circle_marker_b5d10c92d7cc72bb3622386f895ac944 = L.circleMarker(
+                [14.0225, 99.53583],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f30cdfab57ffc734901fb56d27f00da3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_371152f1a555a679c1c3289e6bce933f = $(`<div id="html_371152f1a555a679c1c3289e6bce933f" style="width: 100.0%; height: 100.0%;">กาญจนบุรี - 0.0 มม.</div>`)[0];
+                popup_f30cdfab57ffc734901fb56d27f00da3.setContent(html_371152f1a555a679c1c3289e6bce933f);
+            
+        
+
+        circle_marker_b5d10c92d7cc72bb3622386f895ac944.bindPopup(popup_f30cdfab57ffc734901fb56d27f00da3)
+        ;
+
+        
+    
+    
+            var circle_marker_b843a981b8c5a44e6fdf420d5de8a9a8 = L.circleMarker(
+                [14.74222, 98.63639],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f85817d5ed3657e5bb2f14897d2b71bf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1f337e8942bc956590910062c80e6745 = $(`<div id="html_1f337e8942bc956590910062c80e6745" style="width: 100.0%; height: 100.0%;">ทองผาภูมิ - 0.0 มม.</div>`)[0];
+                popup_f85817d5ed3657e5bb2f14897d2b71bf.setContent(html_1f337e8942bc956590910062c80e6745);
+            
+        
+
+        circle_marker_b843a981b8c5a44e6fdf420d5de8a9a8.bindPopup(popup_f85817d5ed3657e5bb2f14897d2b71bf)
+        ;
+
+        
+    
+    
+            var circle_marker_49e529dddd18fcce843ede0b8ad40620 = L.circleMarker(
+                [14.01167, 99.97],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_2144bfadc3b4efeacf0b236593446436 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c63b2c3da0caba5de2bb54a281026be3 = $(`<div id="html_c63b2c3da0caba5de2bb54a281026be3" style="width: 100.0%; height: 100.0%;">นครปฐม - 0.01 มม.</div>`)[0];
+                popup_2144bfadc3b4efeacf0b236593446436.setContent(html_c63b2c3da0caba5de2bb54a281026be3);
+            
+        
+
+        circle_marker_49e529dddd18fcce843ede0b8ad40620.bindPopup(popup_2144bfadc3b4efeacf0b236593446436)
+        ;
+
+        
+    
+    
+            var circle_marker_9abe9526f07a9bc11cd579522e4b6453 = L.circleMarker(
+                [13.72639, 100.56],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_b41f09d9993ba4e4d5c295cce4071d65 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9989d6e01249a1ee1258a03b9a88a610 = $(`<div id="html_9989d6e01249a1ee1258a03b9a88a610" style="width: 100.0%; height: 100.0%;">กรุงเทพมหานคร - 0.2 มม.</div>`)[0];
+                popup_b41f09d9993ba4e4d5c295cce4071d65.setContent(html_9989d6e01249a1ee1258a03b9a88a610);
+            
+        
+
+        circle_marker_9abe9526f07a9bc11cd579522e4b6453.bindPopup(popup_b41f09d9993ba4e4d5c295cce4071d65)
+        ;
+
+        
+    
+    
+            var circle_marker_14dade8df25f36e9ba4246ce7db036d9 = L.circleMarker(
+                [13.70694, 100.56805],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_39715e21c23d9b73b586c1c00b20f17d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8b25a2f5d7d2972f3ee4a35b375bc22e = $(`<div id="html_8b25a2f5d7d2972f3ee4a35b375bc22e" style="width: 100.0%; height: 100.0%;">กรุงเทพฯ ท่าเรือคลองเตย - 0.0 มม.</div>`)[0];
+                popup_39715e21c23d9b73b586c1c00b20f17d.setContent(html_8b25a2f5d7d2972f3ee4a35b375bc22e);
+            
+        
+
+        circle_marker_14dade8df25f36e9ba4246ce7db036d9.bindPopup(popup_39715e21c23d9b73b586c1c00b20f17d)
+        ;
+
+        
+    
+    
+            var circle_marker_6c3f89cbce009db4d3e1db7f92df894f = L.circleMarker(
+                [13.66639, 100.60611],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_925a2008b0a6c32b6b40e2af134033d5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a0d4c81ae5c7e12f1f489a6df9b2bdc2 = $(`<div id="html_a0d4c81ae5c7e12f1f489a6df9b2bdc2" style="width: 100.0%; height: 100.0%;">กรุงเทพฯ บางนา สกษ. - 1.5 มม.</div>`)[0];
+                popup_925a2008b0a6c32b6b40e2af134033d5.setContent(html_a0d4c81ae5c7e12f1f489a6df9b2bdc2);
+            
+        
+
+        circle_marker_6c3f89cbce009db4d3e1db7f92df894f.bindPopup(popup_925a2008b0a6c32b6b40e2af134033d5)
+        ;
+
+        
+    
+    
+            var circle_marker_7b3f8542288bf9f95da21de69ae15c17 = L.circleMarker(
+                [13.91917, 100.605],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_5f354ec8a14a41bd49d541d52bb99d0f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4c492820c7f9d42c5847aab0f3ef8764 = $(`<div id="html_4c492820c7f9d42c5847aab0f3ef8764" style="width: 100.0%; height: 100.0%;">สนามบินดอนเมือง - 2.4 มม.</div>`)[0];
+                popup_5f354ec8a14a41bd49d541d52bb99d0f.setContent(html_4c492820c7f9d42c5847aab0f3ef8764);
+            
+        
+
+        circle_marker_7b3f8542288bf9f95da21de69ae15c17.bindPopup(popup_5f354ec8a14a41bd49d541d52bb99d0f)
+        ;
+
+        
+    
+    
+            var circle_marker_becdd64f8bd20ded033b0c741812ab5f = L.circleMarker(
+                [13.36667, 100.98333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_46fd9e7dacf8aaab11b06db6aa15ff49 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d21e7c6b137da8c5eb73d8c08f3e51a6 = $(`<div id="html_d21e7c6b137da8c5eb73d8c08f3e51a6" style="width: 100.0%; height: 100.0%;">ชลบุรี - 0.0 มม.</div>`)[0];
+                popup_46fd9e7dacf8aaab11b06db6aa15ff49.setContent(html_d21e7c6b137da8c5eb73d8c08f3e51a6);
+            
+        
+
+        circle_marker_becdd64f8bd20ded033b0c741812ab5f.bindPopup(popup_46fd9e7dacf8aaab11b06db6aa15ff49)
+        ;
+
+        
+    
+    
+            var circle_marker_f356d0ecd6f79e6db00b06526ac1268d = L.circleMarker(
+                [13.16167, 100.80194],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_ab0a50ab679e0db4f5c9d7d43e5034d2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b16d488a8b6404fb0a51b321b2f7425f = $(`<div id="html_b16d488a8b6404fb0a51b321b2f7425f" style="width: 100.0%; height: 100.0%;">เกาะสีชัง - 0.0 มม.</div>`)[0];
+                popup_ab0a50ab679e0db4f5c9d7d43e5034d2.setContent(html_b16d488a8b6404fb0a51b321b2f7425f);
+            
+        
+
+        circle_marker_f356d0ecd6f79e6db00b06526ac1268d.bindPopup(popup_ab0a50ab679e0db4f5c9d7d43e5034d2)
+        ;
+
+        
+    
+    
+            var circle_marker_05222b9361c52dd44168b2a2786aebb5 = L.circleMarker(
+                [12.92, 100.86944],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_7c0c4a7c92bf32a4c28b4aad6f90750e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_096d040f9adcf22a27efc4e3dd092554 = $(`<div id="html_096d040f9adcf22a27efc4e3dd092554" style="width: 100.0%; height: 100.0%;">พัทยา - 0.0 มม.</div>`)[0];
+                popup_7c0c4a7c92bf32a4c28b4aad6f90750e.setContent(html_096d040f9adcf22a27efc4e3dd092554);
+            
+        
+
+        circle_marker_05222b9361c52dd44168b2a2786aebb5.bindPopup(popup_7c0c4a7c92bf32a4c28b4aad6f90750e)
+        ;
+
+        
+    
+    
+            var circle_marker_ce6c4872d678229d098c00b87a3cab5e = L.circleMarker(
+                [12.68333, 100.98333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_d2ef737b55a36b6363bce8d536de2ad6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d5be07704080b27afa2d790d4fd5aa38 = $(`<div id="html_d5be07704080b27afa2d790d4fd5aa38" style="width: 100.0%; height: 100.0%;">สัตหีบ - 0.01 มม.</div>`)[0];
+                popup_d2ef737b55a36b6363bce8d536de2ad6.setContent(html_d5be07704080b27afa2d790d4fd5aa38);
+            
+        
+
+        circle_marker_ce6c4872d678229d098c00b87a3cab5e.bindPopup(popup_d2ef737b55a36b6363bce8d536de2ad6)
+        ;
+
+        
+    
+    
+            var circle_marker_257f73fc93e4de690ddf76d1055b5b2f = L.circleMarker(
+                [13.07694, 100.87583],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_711403e8c64285a98ae75664268497aa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b7754f2f5b34a47f74665dae725bd2b5 = $(`<div id="html_b7754f2f5b34a47f74665dae725bd2b5" style="width: 100.0%; height: 100.0%;">แหลมฉบัง - 0.0 มม.</div>`)[0];
+                popup_711403e8c64285a98ae75664268497aa.setContent(html_b7754f2f5b34a47f74665dae725bd2b5);
+            
+        
+
+        circle_marker_257f73fc93e4de690ddf76d1055b5b2f.bindPopup(popup_711403e8c64285a98ae75664268497aa)
+        ;
+
+        
+    
+    
+            var circle_marker_7e7a956e3e72b31c49b1d8613d753b59 = L.circleMarker(
+                [12.99944, 100.06056],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_4ac52ede23f0c48fd602ec080b9f60bc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_85a4d9c15a0bc7b25c0b1e2cc9ccb3b3 = $(`<div id="html_85a4d9c15a0bc7b25c0b1e2cc9ccb3b3" style="width: 100.0%; height: 100.0%;">เพชรบุรี - 0.0 มม.</div>`)[0];
+                popup_4ac52ede23f0c48fd602ec080b9f60bc.setContent(html_85a4d9c15a0bc7b25c0b1e2cc9ccb3b3);
+            
+        
+
+        circle_marker_7e7a956e3e72b31c49b1d8613d753b59.bindPopup(popup_4ac52ede23f0c48fd602ec080b9f60bc)
+        ;
+
+        
+    
+    
+            var circle_marker_5a7c0011a2d42aa1368c114655271469 = L.circleMarker(
+                [12.63222, 101.34361],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_442c0d1de19aee56915f0d6cb3b2cd72 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_88dd8268e4c6e0e32e8042d58789ce41 = $(`<div id="html_88dd8268e4c6e0e32e8042d58789ce41" style="width: 100.0%; height: 100.0%;">ระยอง - 0.4 มม.</div>`)[0];
+                popup_442c0d1de19aee56915f0d6cb3b2cd72.setContent(html_88dd8268e4c6e0e32e8042d58789ce41);
+            
+        
+
+        circle_marker_5a7c0011a2d42aa1368c114655271469.bindPopup(popup_442c0d1de19aee56915f0d6cb3b2cd72)
+        ;
+
+        
+    
+    
+            var circle_marker_59e896836271a119176da3cf505209b0 = L.circleMarker(
+                [12.735, 101.135],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_b18d4af70f1a8e6e81f423ddfdef10af = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fef18877959bf136e0952d5a82e8e3e1 = $(`<div id="html_fef18877959bf136e0952d5a82e8e3e1" style="width: 100.0%; height: 100.0%;">ห้วยโป่ง สกษ. - 2.2 มม.</div>`)[0];
+                popup_b18d4af70f1a8e6e81f423ddfdef10af.setContent(html_fef18877959bf136e0952d5a82e8e3e1);
+            
+        
+
+        circle_marker_59e896836271a119176da3cf505209b0.bindPopup(popup_b18d4af70f1a8e6e81f423ddfdef10af)
+        ;
+
+        
+    
+    
+            var circle_marker_ed7b6c307380c7e754bc0781fc3af7aa = L.circleMarker(
+                [12.61667, 102.11333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_f8bccb0baf5ca005a20c336d6669cfa6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_28ae79b123263f81d8a2e52e557787a0 = $(`<div id="html_28ae79b123263f81d8a2e52e557787a0" style="width: 100.0%; height: 100.0%;">จันทบุรี - 0.0 มม.</div>`)[0];
+                popup_f8bccb0baf5ca005a20c336d6669cfa6.setContent(html_28ae79b123263f81d8a2e52e557787a0);
+            
+        
+
+        circle_marker_ed7b6c307380c7e754bc0781fc3af7aa.bindPopup(popup_f8bccb0baf5ca005a20c336d6669cfa6)
+        ;
+
+        
+    
+    
+            var circle_marker_43f49147aea6889714b31b61e2cfcfce = L.circleMarker(
+                [12.50861, 102.17305],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_223637985b79e66a358701060ac9770a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_657141177b1b30fe8ef6662d912be397 = $(`<div id="html_657141177b1b30fe8ef6662d912be397" style="width: 100.0%; height: 100.0%;">พลิ้ว สกษ. - 0.0 มม.</div>`)[0];
+                popup_223637985b79e66a358701060ac9770a.setContent(html_657141177b1b30fe8ef6662d912be397);
+            
+        
+
+        circle_marker_43f49147aea6889714b31b61e2cfcfce.bindPopup(popup_223637985b79e66a358701060ac9770a)
+        ;
+
+        
+    
+    
+            var circle_marker_a50d89fb6853e4ecea5768dac52faf64 = L.circleMarker(
+                [11.83333, 99.83333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_b9e464b29649830cb380d34540e74270 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d64a5bb4269b95b68accc716bf25dc2f = $(`<div id="html_d64a5bb4269b95b68accc716bf25dc2f" style="width: 100.0%; height: 100.0%;">ประจวบคีรีขันธ์ - 0.0 มม.</div>`)[0];
+                popup_b9e464b29649830cb380d34540e74270.setContent(html_d64a5bb4269b95b68accc716bf25dc2f);
+            
+        
+
+        circle_marker_a50d89fb6853e4ecea5768dac52faf64.bindPopup(popup_b9e464b29649830cb380d34540e74270)
+        ;
+
+        
+    
+    
+            var circle_marker_6dcbf6a4f776d73d7b262798fdfa6288 = L.circleMarker(
+                [12.58611, 99.9625],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_12016c3a49083d7e5474a0f0bb21dd46 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0710ece0e1cc3c150d7f79d54f302345 = $(`<div id="html_0710ece0e1cc3c150d7f79d54f302345" style="width: 100.0%; height: 100.0%;">หัวหิน - 0.0 มม.</div>`)[0];
+                popup_12016c3a49083d7e5474a0f0bb21dd46.setContent(html_0710ece0e1cc3c150d7f79d54f302345);
+            
+        
+
+        circle_marker_6dcbf6a4f776d73d7b262798fdfa6288.bindPopup(popup_12016c3a49083d7e5474a0f0bb21dd46)
+        ;
+
+        
+    
+    
+            var circle_marker_5afcd82c2bc3ff1b6b9bb0131b580576 = L.circleMarker(
+                [12.58333, 99.73333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_2e136ffb6dbf3ea35776bdbffe7cd20a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3024da2f8dbe05d5729434f9a114edd1 = $(`<div id="html_3024da2f8dbe05d5729434f9a114edd1" style="width: 100.0%; height: 100.0%;">หนองพลับ สกษ. - 0.0 มม.</div>`)[0];
+                popup_2e136ffb6dbf3ea35776bdbffe7cd20a.setContent(html_3024da2f8dbe05d5729434f9a114edd1);
+            
+        
+
+        circle_marker_5afcd82c2bc3ff1b6b9bb0131b580576.bindPopup(popup_2e136ffb6dbf3ea35776bdbffe7cd20a)
+        ;
+
+        
+    
+    
+            var circle_marker_cd83c95df7d0d713f15ed626eec0ee3f = L.circleMarker(
+                [11.76667, 102.88333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_698ef666555d430f489495a41bdd07a2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_abcf91b22f167c65608fb7e2dffd2318 = $(`<div id="html_abcf91b22f167c65608fb7e2dffd2318" style="width: 100.0%; height: 100.0%;">ตราด - 8.4 มม.</div>`)[0];
+                popup_698ef666555d430f489495a41bdd07a2.setContent(html_abcf91b22f167c65608fb7e2dffd2318);
+            
+        
+
+        circle_marker_cd83c95df7d0d713f15ed626eec0ee3f.bindPopup(popup_698ef666555d430f489495a41bdd07a2)
+        ;
+
+        
+    
+    
+            var circle_marker_a284862fa1677a499bbb5732f119f794 = L.circleMarker(
+                [10.49875, 99.18847],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_e5e6366e5b88004a96c0391dec3dfd89 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9f1d999c9e590981a8a13fe12517dcc2 = $(`<div id="html_9f1d999c9e590981a8a13fe12517dcc2" style="width: 100.0%; height: 100.0%;">ชุมพร - 0.0 มม.</div>`)[0];
+                popup_e5e6366e5b88004a96c0391dec3dfd89.setContent(html_9f1d999c9e590981a8a13fe12517dcc2);
+            
+        
+
+        circle_marker_a284862fa1677a499bbb5732f119f794.bindPopup(popup_e5e6366e5b88004a96c0391dec3dfd89)
+        ;
+
+        
+    
+    
+            var circle_marker_94160b16887797110353e7eaa94ecc81 = L.circleMarker(
+                [10.33333, 99.1],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_b0e1a100655091b2362c8daa9ffc18a8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_99f881881eb305ff10e995a254aca188 = $(`<div id="html_99f881881eb305ff10e995a254aca188" style="width: 100.0%; height: 100.0%;">สวี สกษ. - 0.0 มม.</div>`)[0];
+                popup_b0e1a100655091b2362c8daa9ffc18a8.setContent(html_99f881881eb305ff10e995a254aca188);
+            
+        
+
+        circle_marker_94160b16887797110353e7eaa94ecc81.bindPopup(popup_b0e1a100655091b2362c8daa9ffc18a8)
+        ;
+
+        
+    
+    
+            var circle_marker_94accec89980ab49f5a822e107241a26 = L.circleMarker(
+                [9.98333, 98.61667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_c7770280bbb27c49a409fb39e157e74f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f1f30dbde0e3822242d5be08f4836616 = $(`<div id="html_f1f30dbde0e3822242d5be08f4836616" style="width: 100.0%; height: 100.0%;">ระนอง - 0.0 มม.</div>`)[0];
+                popup_c7770280bbb27c49a409fb39e157e74f.setContent(html_f1f30dbde0e3822242d5be08f4836616);
+            
+        
+
+        circle_marker_94accec89980ab49f5a822e107241a26.bindPopup(popup_c7770280bbb27c49a409fb39e157e74f)
+        ;
+
+        
+    
+    
+            var circle_marker_438786edb0cd4efa218a868e67068842 = L.circleMarker(
+                [9.13556, 99.15194],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_88cf9ffcfdffe24eacbbf435a348d8e2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_47847e1de8412db35fc161325ea95d81 = $(`<div id="html_47847e1de8412db35fc161325ea95d81" style="width: 100.0%; height: 100.0%;">สุราษฎร์ธานี - 0.0 มม.</div>`)[0];
+                popup_88cf9ffcfdffe24eacbbf435a348d8e2.setContent(html_47847e1de8412db35fc161325ea95d81);
+            
+        
+
+        circle_marker_438786edb0cd4efa218a868e67068842.bindPopup(popup_88cf9ffcfdffe24eacbbf435a348d8e2)
+        ;
+
+        
+    
+    
+            var circle_marker_b7eaddea15a5da8b3865679170d2fdfa = L.circleMarker(
+                [9.46667, 100.05],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_811148f42d92941a2d0f92e7b9bd25b2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_058f68402abed6875e18f8bb0c4671e1 = $(`<div id="html_058f68402abed6875e18f8bb0c4671e1" style="width: 100.0%; height: 100.0%;">เกาะสมุย - 0.0 มม.</div>`)[0];
+                popup_811148f42d92941a2d0f92e7b9bd25b2.setContent(html_058f68402abed6875e18f8bb0c4671e1);
+            
+        
+
+        circle_marker_b7eaddea15a5da8b3865679170d2fdfa.bindPopup(popup_811148f42d92941a2d0f92e7b9bd25b2)
+        ;
+
+        
+    
+    
+            var circle_marker_1861bc0e197fd16908130d3c9df2300b = L.circleMarker(
+                [9.1, 99.63333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_5c902365fb6143223c0a826368fd1fc1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3ec26a55815112c8f6efbb670778f93f = $(`<div id="html_3ec26a55815112c8f6efbb670778f93f" style="width: 100.0%; height: 100.0%;">สุราษฎร์ธานี สกษ. - 0.0 มม.</div>`)[0];
+                popup_5c902365fb6143223c0a826368fd1fc1.setContent(html_3ec26a55815112c8f6efbb670778f93f);
+            
+        
+
+        circle_marker_1861bc0e197fd16908130d3c9df2300b.bindPopup(popup_5c902365fb6143223c0a826368fd1fc1)
+        ;
+
+        
+    
+    
+            var circle_marker_d5fd4c02d3317392e81172638f846074 = L.circleMarker(
+                [8.57022, 99.25825],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_3437718aecba61b558c0542bf96896e4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_64e53e00fb7843a0e90ae785fd8f7cca = $(`<div id="html_64e53e00fb7843a0e90ae785fd8f7cca" style="width: 100.0%; height: 100.0%;">พระแสง สอท. - 0.0 มม.</div>`)[0];
+                popup_3437718aecba61b558c0542bf96896e4.setContent(html_64e53e00fb7843a0e90ae785fd8f7cca);
+            
+        
+
+        circle_marker_d5fd4c02d3317392e81172638f846074.bindPopup(popup_3437718aecba61b558c0542bf96896e4)
+        ;
+
+        
+    
+    
+            var circle_marker_72186f33e4222e1cad3181211c7d9085 = L.circleMarker(
+                [8.53778, 99.94722],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_ced0b02c40e60bc529d9a47b48e3ae4d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ca2af54dcf38ff55068fd3d6cbab0531 = $(`<div id="html_ca2af54dcf38ff55068fd3d6cbab0531" style="width: 100.0%; height: 100.0%;">นครศรีธรรมราช - 0.0 มม.</div>`)[0];
+                popup_ced0b02c40e60bc529d9a47b48e3ae4d.setContent(html_ca2af54dcf38ff55068fd3d6cbab0531);
+            
+        
+
+        circle_marker_72186f33e4222e1cad3181211c7d9085.bindPopup(popup_ced0b02c40e60bc529d9a47b48e3ae4d)
+        ;
+
+        
+    
+    
+            var circle_marker_195d64155c7aadc87aa60fa331535632 = L.circleMarker(
+                [8.35931, 100.0],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_0a37da12a41f3d078cd2d373d4510ba7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2a92b173b270580c40236beb91fa9d7c = $(`<div id="html_2a92b173b270580c40236beb91fa9d7c" style="width: 100.0%; height: 100.0%;">นครศรีธรรมราช สกษ. - 0.0 มม.</div>`)[0];
+                popup_0a37da12a41f3d078cd2d373d4510ba7.setContent(html_2a92b173b270580c40236beb91fa9d7c);
+            
+        
+
+        circle_marker_195d64155c7aadc87aa60fa331535632.bindPopup(popup_0a37da12a41f3d078cd2d373d4510ba7)
+        ;
+
+        
+    
+    
+            var circle_marker_a263e53ae768569a48e706db60394206 = L.circleMarker(
+                [8.42472, 99.50667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_949e80f699630f882656dc5561f6c5ac = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_58cd6170412dc8d5327204e7cc7ffc0e = $(`<div id="html_58cd6170412dc8d5327204e7cc7ffc0e" style="width: 100.0%; height: 100.0%;">ฉวาง - 0.0 มม.</div>`)[0];
+                popup_949e80f699630f882656dc5561f6c5ac.setContent(html_58cd6170412dc8d5327204e7cc7ffc0e);
+            
+        
+
+        circle_marker_a263e53ae768569a48e706db60394206.bindPopup(popup_949e80f699630f882656dc5561f6c5ac)
+        ;
+
+        
+    
+    
+            var circle_marker_d16d6258d493027eab2e4687ba363003 = L.circleMarker(
+                [7.58333, 100.16667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_540ed5874a43cb7a93eb8cf48facd25b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1cc456e0972359cbb5ba10e5831198fd = $(`<div id="html_1cc456e0972359cbb5ba10e5831198fd" style="width: 100.0%; height: 100.0%;">พัทลุง สกษ. - 0.0 มม.</div>`)[0];
+                popup_540ed5874a43cb7a93eb8cf48facd25b.setContent(html_1cc456e0972359cbb5ba10e5831198fd);
+            
+        
+
+        circle_marker_d16d6258d493027eab2e4687ba363003.bindPopup(popup_540ed5874a43cb7a93eb8cf48facd25b)
+        ;
+
+        
+    
+    
+            var circle_marker_15633f3e3425509406b5d326c0dcaa30 = L.circleMarker(
+                [8.68417, 98.25222],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_e6e1690f9f6eab7f3581cbac10a008a9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b276edeae014c71c6c092c75cdab3b13 = $(`<div id="html_b276edeae014c71c6c092c75cdab3b13" style="width: 100.0%; height: 100.0%;">ตะกั่วป่า - 15.0 มม.</div>`)[0];
+                popup_e6e1690f9f6eab7f3581cbac10a008a9.setContent(html_b276edeae014c71c6c092c75cdab3b13);
+            
+        
+
+        circle_marker_15633f3e3425509406b5d326c0dcaa30.bindPopup(popup_e6e1690f9f6eab7f3581cbac10a008a9)
+        ;
+
+        
+    
+    
+            var circle_marker_ec7aba97baf56ca77ba9c64dc3d06fd9 = L.circleMarker(
+                [7.88333, 98.4],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_24a79953dd5a640db1e1d9481b241a26 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_532e2e72a8ed2bdea465f98c4d07448e = $(`<div id="html_532e2e72a8ed2bdea465f98c4d07448e" style="width: 100.0%; height: 100.0%;">ภูเก็ต - 2.3 มม.</div>`)[0];
+                popup_24a79953dd5a640db1e1d9481b241a26.setContent(html_532e2e72a8ed2bdea465f98c4d07448e);
+            
+        
+
+        circle_marker_ec7aba97baf56ca77ba9c64dc3d06fd9.bindPopup(popup_24a79953dd5a640db1e1d9481b241a26)
+        ;
+
+        
+    
+    
+            var circle_marker_23c8c1222f3b4b1dd5ad0c18c78bf2de = L.circleMarker(
+                [8.145, 98.31444],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_ffac3cf00a15bd13f3cc20a5bd527a1f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a2e836db059dbf58d7a4cdc6046d796c = $(`<div id="html_a2e836db059dbf58d7a4cdc6046d796c" style="width: 100.0%; height: 100.0%;">ภูเก็ต (ศูนย์ฯ) - 2.0 มม.</div>`)[0];
+                popup_ffac3cf00a15bd13f3cc20a5bd527a1f.setContent(html_a2e836db059dbf58d7a4cdc6046d796c);
+            
+        
+
+        circle_marker_23c8c1222f3b4b1dd5ad0c18c78bf2de.bindPopup(popup_ffac3cf00a15bd13f3cc20a5bd527a1f)
+        ;
+
+        
+    
+    
+            var circle_marker_e233ca15b6ac4da431304ea3b5e02788 = L.circleMarker(
+                [7.53333, 99.05],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_025be13f4a958c9f69af24c727a88bf6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bb98060b94ef4d23200bbd1a23ab2acf = $(`<div id="html_bb98060b94ef4d23200bbd1a23ab2acf" style="width: 100.0%; height: 100.0%;">เกาะลันตา - 0.0 มม.</div>`)[0];
+                popup_025be13f4a958c9f69af24c727a88bf6.setContent(html_bb98060b94ef4d23200bbd1a23ab2acf);
+            
+        
+
+        circle_marker_e233ca15b6ac4da431304ea3b5e02788.bindPopup(popup_025be13f4a958c9f69af24c727a88bf6)
+        ;
+
+        
+    
+    
+            var circle_marker_3a62a860fad52a14d7e85e96430fc984 = L.circleMarker(
+                [8.10361, 98.97528],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_326f8770c3bd215e68bdd69c2d981979 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0b6a2df17869d5c865b8e12d6aeef904 = $(`<div id="html_0b6a2df17869d5c865b8e12d6aeef904" style="width: 100.0%; height: 100.0%;">กระบี่ - 14.0 มม.</div>`)[0];
+                popup_326f8770c3bd215e68bdd69c2d981979.setContent(html_0b6a2df17869d5c865b8e12d6aeef904);
+            
+        
+
+        circle_marker_3a62a860fad52a14d7e85e96430fc984.bindPopup(popup_326f8770c3bd215e68bdd69c2d981979)
+        ;
+
+        
+    
+    
+            var circle_marker_60243d49e86fee60cb2674df0985b004 = L.circleMarker(
+                [7.51667, 99.61667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_1cb3d64e49ae9416e4f793c57312198f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c99aa27127b79da7c5563bc3234eb40c = $(`<div id="html_c99aa27127b79da7c5563bc3234eb40c" style="width: 100.0%; height: 100.0%;">ตรัง - 0.0 มม.</div>`)[0];
+                popup_1cb3d64e49ae9416e4f793c57312198f.setContent(html_c99aa27127b79da7c5563bc3234eb40c);
+            
+        
+
+        circle_marker_60243d49e86fee60cb2674df0985b004.bindPopup(popup_1cb3d64e49ae9416e4f793c57312198f)
+        ;
+
+        
+    
+    
+            var circle_marker_2411fe36090b307f3adc47586afc9628 = L.circleMarker(
+                [7.0, 100.5],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_a18e30ab880534632ae4121eeb5c8941 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_28f2975ba01c0b2b86615df721607f8f = $(`<div id="html_28f2975ba01c0b2b86615df721607f8f" style="width: 100.0%; height: 100.0%;">คอหงษ์ สกษ. - 0.0 มม.</div>`)[0];
+                popup_a18e30ab880534632ae4121eeb5c8941.setContent(html_28f2975ba01c0b2b86615df721607f8f);
+            
+        
+
+        circle_marker_2411fe36090b307f3adc47586afc9628.bindPopup(popup_a18e30ab880534632ae4121eeb5c8941)
+        ;
+
+        
+    
+    
+            var circle_marker_0ea8a23348b4051c3413326539f1b533 = L.circleMarker(
+                [6.79806, 100.39056],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_9c7f3a6fe9f029eec752294993fcc472 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1b05454cca13f96f063bd3a968d0be5a = $(`<div id="html_1b05454cca13f96f063bd3a968d0be5a" style="width: 100.0%; height: 100.0%;">สะเดา - 0.0 มม.</div>`)[0];
+                popup_9c7f3a6fe9f029eec752294993fcc472.setContent(html_1b05454cca13f96f063bd3a968d0be5a);
+            
+        
+
+        circle_marker_0ea8a23348b4051c3413326539f1b533.bindPopup(popup_9c7f3a6fe9f029eec752294993fcc472)
+        ;
+
+        
+    
+    
+            var circle_marker_82d28a6f50c5eaa4d5fac579f545f688 = L.circleMarker(
+                [7.18211, 100.60769],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_a078de43ae4d85c23737aca2d28bd279 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_746f66775eb14a60822d6c686a005d28 = $(`<div id="html_746f66775eb14a60822d6c686a005d28" style="width: 100.0%; height: 100.0%;">สงขลา - 0.3 มม.</div>`)[0];
+                popup_a078de43ae4d85c23737aca2d28bd279.setContent(html_746f66775eb14a60822d6c686a005d28);
+            
+        
+
+        circle_marker_82d28a6f50c5eaa4d5fac579f545f688.bindPopup(popup_a078de43ae4d85c23737aca2d28bd279)
+        ;
+
+        
+    
+    
+            var circle_marker_869ee096a062bbea452929e3bb08ea98 = L.circleMarker(
+                [6.91667, 100.43333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_19503d85a8de800b1002ece548025474 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a0ef3bd91bb0adabe0500813a48664c9 = $(`<div id="html_a0ef3bd91bb0adabe0500813a48664c9" style="width: 100.0%; height: 100.0%;">หาดใหญ่ - 0.0 มม.</div>`)[0];
+                popup_19503d85a8de800b1002ece548025474.setContent(html_a0ef3bd91bb0adabe0500813a48664c9);
+            
+        
+
+        circle_marker_869ee096a062bbea452929e3bb08ea98.bindPopup(popup_19503d85a8de800b1002ece548025474)
+        ;
+
+        
+    
+    
+            var circle_marker_2864fbe9b22f5ef83686fb6f756f97c8 = L.circleMarker(
+                [6.65, 100.08333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_82fb2f7ac524b281ce06b4d2baee8bbe = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8707b9fa68ba3091a9985889ab141a53 = $(`<div id="html_8707b9fa68ba3091a9985889ab141a53" style="width: 100.0%; height: 100.0%;">สตูล - 0.0 มม.</div>`)[0];
+                popup_82fb2f7ac524b281ce06b4d2baee8bbe.setContent(html_8707b9fa68ba3091a9985889ab141a53);
+            
+        
+
+        circle_marker_2864fbe9b22f5ef83686fb6f756f97c8.bindPopup(popup_82fb2f7ac524b281ce06b4d2baee8bbe)
+        ;
+
+        
+    
+    
+            var circle_marker_67c589be0efb7d41835fb5ce59e00152 = L.circleMarker(
+                [6.78333, 101.15],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_3b0f356996573a0bdb1b6db47e911a98 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2eabe2043ca839c8faac0e8146246058 = $(`<div id="html_2eabe2043ca839c8faac0e8146246058" style="width: 100.0%; height: 100.0%;">ปัตตานี - 0.0 มม.</div>`)[0];
+                popup_3b0f356996573a0bdb1b6db47e911a98.setContent(html_2eabe2043ca839c8faac0e8146246058);
+            
+        
+
+        circle_marker_67c589be0efb7d41835fb5ce59e00152.bindPopup(popup_3b0f356996573a0bdb1b6db47e911a98)
+        ;
+
+        
+    
+    
+            var circle_marker_d2c2d31c87d7230222f240ca8156c36a = L.circleMarker(
+                [6.51667, 101.28333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_bc82162793abe5267eadffc3c28d11b9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_39cb89da2fe1201e1dd4c6b24c3cf1b3 = $(`<div id="html_39cb89da2fe1201e1dd4c6b24c3cf1b3" style="width: 100.0%; height: 100.0%;">ยะลา สกษ. - 0.0 มม.</div>`)[0];
+                popup_bc82162793abe5267eadffc3c28d11b9.setContent(html_39cb89da2fe1201e1dd4c6b24c3cf1b3);
+            
+        
+
+        circle_marker_d2c2d31c87d7230222f240ca8156c36a.bindPopup(popup_bc82162793abe5267eadffc3c28d11b9)
+        ;
+
+        
+    
+    
+            var circle_marker_4257654b8b11eb0146bb3762e866b7c9 = L.circleMarker(
+                [6.41667, 101.81667],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_055f3d012ca000dde50a415189ec3df1);
+        
+    
+        var popup_cd99a160cbd63f9eeb51342f72a113c8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ebc08f1bb524d24b40a2bb59d0c98138 = $(`<div id="html_ebc08f1bb524d24b40a2bb59d0c98138" style="width: 100.0%; height: 100.0%;">นราธิวาส - 0.0 มม.</div>`)[0];
+                popup_cd99a160cbd63f9eeb51342f72a113c8.setContent(html_ebc08f1bb524d24b40a2bb59d0c98138);
+            
+        
+
+        circle_marker_4257654b8b11eb0146bb3762e866b7c9.bindPopup(popup_cd99a160cbd63f9eeb51342f72a113c8)
+        ;
+
+        
+    
+    
+            marker_cluster_055f3d012ca000dde50a415189ec3df1.addTo(map_8a0ab18aa5b1eae292463f9e37c0b087);
+        
+</script>
 </html>
